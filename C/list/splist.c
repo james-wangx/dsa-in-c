@@ -10,7 +10,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "splist.h"
 
 void InitailizeList(List *plist)
 {
