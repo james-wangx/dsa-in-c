@@ -1,2 +1,7 @@
 cmake-build-debug
+
 .idea
+
+demo/demo.py
+
+demo/demo.c
