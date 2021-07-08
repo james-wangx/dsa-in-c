@@ -81,8 +81,22 @@ static int max_sub_sum(const int arr[], int left, int right) {
     return max3(max_left_sum, max_right_sum, max_left_border_sum + max_right_border_sum);
 }
 
-int max_subsequence_sum3(const int arr[], int n) {
+__attribute__((unused)) int max_subsequence_sum3(const int arr[], int n) {
     return max_sub_sum(arr, 0, n - 1);
+}
+
+// 更快的算法
+int max_subsequence_sum4(const int arr[], int n) {
+    int this_sum = 0, max_sum = 0;
+    for (int i = 0; i <= n; i++) {
+        this_sum += arr[i];
+        if (this_sum > max_sum)
+            max_sum = this_sum;
+        else if (this_sum < 0) // 0很关键，因为我们认为子序列的和一定是大于0的
+            this_sum = 0; // 所以当子序列和小于0时，重置其为0,抛弃索引i之前的所有元素
+    }
+
+    return max_sum;
 }
 
 int main(void) {
@@ -93,6 +107,7 @@ int main(void) {
 //    int max_sum = max_subsequence_sum1(array, size);
 //    int max_sum = max_subsequence_sum2(array, size);
 //    int max_sum = bigO_logn(array, 0, size - 1);
-    int max_sum = max_subsequence_sum3(array, size);
+//    int max_sum = max_subsequence_sum3(array, size);
+    int max_sum = max_subsequence_sum4(array, size);
     printf("max subsequence sum: %d\n", max_sum);
 }

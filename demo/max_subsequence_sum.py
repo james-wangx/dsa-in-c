@@ -67,12 +67,28 @@ def max_subsequence_sum3(arr):
     return max_sub_sum(arr, 0, len(arr) - 1)
 
 
+def max_subsequence_sum4(arr):
+    """
+    更快的算法
+    """
+    max_sum = this_sum = 0
+    for i in arr:
+        this_sum += i
+        if this_sum > max_sum:
+            max_sum = this_sum
+        elif this_sum < 0:
+            this_sum = 0
+
+    return max_sum
+
+
 def test():
-    # array = [-2, 11, -4, 13, -5, -2]
-    array = [9, 9, -9, -9]
+    array = [-2, 11, -4, 13, -5, -2]
+    # array = [9, 9, -9, -9]
     # max_sum = max_subsequence_sum1(array)
     # max_sum = max_subsequence_sum2(array)
-    max_sum = max_subsequence_sum3(array)
+    # max_sum = max_subsequence_sum3(array)
+    max_sum = max_subsequence_sum4(array)
     print(f'max subsequence sum: {max_sum}')
 
 
