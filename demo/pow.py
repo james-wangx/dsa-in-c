@@ -16,6 +16,7 @@ def my_pow(x, n):
         return my_pow(x * x, n // 2)
     else:
         return my_pow(x * x, n // 2) * x
+        # return my_pow(x, n - 1) * x
 
 
 def test():

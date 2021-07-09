@@ -19,8 +19,9 @@ long int my_pow(int x, int n) {
         return my_pow(x * x, n / 2);
     else
         return my_pow(x * x, n / 2) * x;
+//        return my_pow(x, n - 1) * x;
 }
 
 int main(void) {
-    printf("pow(2, 62) = %ld", my_pow(2, 10));
+    printf("pow(2, 10) = %ld", my_pow(2, 10));
 }
