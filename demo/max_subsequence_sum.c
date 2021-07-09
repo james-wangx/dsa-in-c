@@ -85,7 +85,7 @@ __attribute__((unused)) int max_subsequence_sum3(const int arr[], int n) {
     return max_sub_sum(arr, 0, n - 1);
 }
 
-// 更快的算法
+// 几乎完美的算法：仅需要常量空间并以线性时间运行的联机算法
 int max_subsequence_sum4(const int arr[], int n) {
     int this_sum = 0, max_sum = 0;
     for (int i = 0; i <= n; i++) {
