@@ -1,4 +1,2 @@
-# Data Structure
-# and
-# Algorithm Analysis
-# in C, Python
+# Data Structure and Algorithm Analysis
+# In C, Python
