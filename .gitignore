@@ -2,6 +2,6 @@ cmake-build-debug
 
 .idea
 
-demo/demo.py
+Python/demo/demo.py
 
-demo/demo.c
+C/demo/demo.c
