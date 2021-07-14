@@ -1,37 +1,86 @@
 //
-// Created by pineapple on 2021/7/10.
-//
+// Created by pineapple on 2021/7/11.
+// Simple linked list
 
-#ifndef DATASTRUCTURE_SPLIST_H
-#define DATASTRUCTURE_SPLIST_H
+#ifndef _SPLIST_H_
+#define _SPLIST_H_
 
-#include <stdbool.h>
+#include <stdio.h>
 
-#define LIST_LEN 100
+struct list_head {
+	struct list_head *next;
+};
 
-typedef int Item;
-typedef struct node {
-	Item item;
-	struct node *next;
-} Node;
-typedef struct node *List;
+#define offsetof(TYPE, MEMBER) ((size_t) & ((TYPE *)0)->MEMBER)
 
-void InitializeList(List list);
+/**
+ * container_of - cast a member of a structure out to the containing structure
+ * @ptr:	the pointer to the member.
+ * @type:	the type of the container struct this is embedded in.
+ * @member:	the name of the member within the struct.
+ */
+#define container_of(ptr, type, member)                                        \
+	({                                                                     \
+		const typeof(((type *)0)->member) *__mptr = (ptr);             \
+		(type *)((char *)__mptr - offsetof(type, member));             \
+	})
 
-bool IsEmpty(List list);
+static inline void INIT_LIST_HEAD(struct list_head *list)
+{
+	list->next = NULL;
+}
 
-bool IsFull(List list);
+/**
+ * list_add - add a new entry
+ * @new: 	new entry to be added
+ * @head: 	list head to add it after
+ */
+static inline void list_add(struct list_head *new, struct list_head *head)
+{
+	while (head->next != NULL)
+		head = head->next;
 
-int CountItem(List list);
+	head->next = new;
+	new->next = NULL;
+}
 
-Item FindItem(List list, const Item *pitem);
+/**
+ * list_del - delete a specified entry
+ * @entry:	an unlucky entry to be deleted
+ * @head:	the head for your list
+ */
+static inline void list_del(struct list_head *entry, struct list_head *head)
+{
+	while (head->next != entry)
+		head = head->next;
 
-void AddItem(List list, Item *pitem);
+	head->next = entry->next;
+}
 
-void DeleteItem(List list, Item *pitem);
+/**
+ * list_entry - get the struct of the entry
+ * @ptr:	the &struct list_head pointer.
+ * @type:	the type of the struct this is embedded it.
+ * @member:	the name of the list_head within the struct.
+ */
+#define list_entry(ptr, type, member) container_of(ptr, type, member)
 
-void InsertItem(List list, Item *position, Item *pitem);
+#define list_first_entry(ptr, type, member)                                    \
+	list_entry((ptr)->next, type, member)
 
-void EmptyTheList(List list);
+#define list_next_entry(ptr, member)                                           \
+	list_entry((ptr)->member.next, typeof(*(ptr)), member)
 
-#endif //DATASTRUCTURE_SPLIST_H
+/**
+ * list_for_each - iterate over a list
+ * @pos: 	the &struct list_head to use as a loop cursor
+ * @head:	the head for your list
+ */
+#define list_for_each(pos, head)                                               \
+	for ((pos) = (head)->next; (pos) != NULL; (pos) = (pos)->next)
+
+#define list_for_each_entry(pos, head, member)                                 \
+	for ((pos) = list_first_entry(head, typeof(*(pos)), member);           \
+	     &((pos)->member) != NULL; (pos) = list_next_entry(pos, member))
+
+#endif //_SPLIST_H_

@@ -1,76 +1,54 @@
 //
-// Created by pineapple on 2021/7/10.
+// Created by pineapple on 2021/7/11.
 //
 
-#include "splist.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include "splist.h"
 
-/*
- * 初始化列表
- */
-void InitializeList(List list)
-{
-	list = NULL;
-}
+struct person {
+	int age;
+	struct list_head list;
+};
 
-/*
- * 判断链表是否为空
- */
-bool IsEmpty(List list)
+int main(void)
 {
-	if (list == NULL)
-		return true;
-	return false;
-}
+	struct person per;
+	struct person *temp;
+	//	struct list_head *pos;
+	struct person *pos;
 
-/*
- * 判断列表是否已满
- */
-bool IsFull(List list)
-{
-	//    Node *temp = (Node *) malloc(sizeof(Node));
-	//    if (temp == NULL)
-	//        return true;
-	//    free(temp);
-	//    return false;
-	if (CountItem(list) > LIST_LEN)
-		return true;
-	return false;
-}
+	// 初始化链表
+	INIT_LIST_HEAD(&per.list);
 
-/*
- * 统计链表的项目数
- */
-int CountItem(List list)
-{
-	int count = 0;
-	while (list->next != NULL) {
-		list = list->next;
-		count++;
+	// 添加元素
+	for (int i = 0; i < 5; ++i) {
+		temp = (struct person *)malloc(sizeof(struct person));
+		temp->age = i * 10;
+		list_add(&temp->list, &per.list);
 	}
 
-	return count;
-}
+	// 删除元素
+	//	list_for_each (pos, &per.list) {
+	//		temp = list_entry(pos, struct person, list);
+	//		if (temp->age == 40) {
+	//			list_del(pos, &per.list);
+	//			free(temp);
+	//			// list_for_each是不安全的，删掉元素后无法继续获取下一个元素
+	//			break;
+	//		}
+	//	}
+	list_for_each_entry (pos, &per.list, list) {
+		if (pos->age == 40) {
+			list_del(&pos->list, &per.list);
+			free(pos);
+			break;
+		}
+	}
 
-/*
- * 查找一项并返回
- */
-Item FindItem(List list, const Item *pitem)
-{
-	while (list->next != NULL && list->item != *pitem) {
-		list = list->next;
+	// 遍历打印链表
+	list_for_each_entry (pos, &per.list, list) {
+		printf("%d ", pos->age);
 	}
-	if (list->item == *pitem)
-		return list->item;
-	else {
-		fprintf(stderr, "Not find, return NULL.");
-		return NULL;
-	}
-}
 
-void demo()
-{
-	for (int i = 0; i < 10; ++i) {
-	}
+	return 0;
 }
