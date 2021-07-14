@@ -58,6 +58,15 @@ static inline void list_del(struct list_head *entry, struct list_head *head)
 }
 
 /**
+ * list_empty - tests whether a list is empty
+ * @head: the list to test.
+ */
+static inline int list_empty(const struct list_head *head)
+{
+	return head->next == NULL;
+}
+
+/**
  * list_entry - get the struct of the entry
  * @ptr:	the &struct list_head pointer.
  * @type:	the type of the struct this is embedded it.
