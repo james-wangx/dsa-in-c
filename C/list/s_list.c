@@ -15,8 +15,11 @@ void add_book(List *pl);
 
 char *s_gets(char *string, int len);
 
-int main()
+int main(void)
 {
+#ifdef WIN32 // 如果是Windows系统，则修改控制台的编码为 UTF-8
+	system("chcp 65001 > nul");
+#endif
 	List books;
 	int choice;
 
