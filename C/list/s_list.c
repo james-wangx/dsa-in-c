@@ -11,7 +11,7 @@ char get_first(void);
 
 void eat_line(void);
 
-void add_book(List list);
+void add_book(List *pl);
 
 char *s_gets(char *string, int len);
 
@@ -23,19 +23,21 @@ int main()
 	// 初始化链表
 	list_init(&books);
 
+	printf("======欢迎来到图书管理系统！======\n");
+
 	while ((choice = get_choice()) != 'q') {
 		switch (choice) {
-		case 'a':
-			add_book(books);
+		case 'a': // 添加书籍
+			add_book(&books);
 			break;
-		case 'b':
+		case 'b': // 查看书籍
 			list_for_each (books, show_books)
 				;
 			break;
-		case 'c':
+		case 'c': // 书记个数
 			printf("书籍个数：%d\n", list_count(books));
 			break;
-		case 'd':
+		case 'd': // 清空书籍
 			list_clean(&books);
 			break;
 		default:
@@ -88,7 +90,7 @@ inline void eat_line(void)
 		continue;
 }
 
-void add_book(List list)
+void add_book(List *pl)
 {
 	Item item;
 
@@ -98,8 +100,9 @@ void add_book(List list)
 	s_gets(item.author, MAX_AUTHOR);
 	printf("价格：");
 	scanf("%lf", &item.price);
+	eat_line();
 
-	list_append(&list, &item);
+	list_append(pl, &item);
 }
 
 char *s_gets(char *string, int len)
