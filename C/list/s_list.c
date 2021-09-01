@@ -3,41 +3,119 @@
 
 #include "s_list.h"
 
-void show_books(Item *pi) {
-    printf("title: %s\nauthor: %s\nprice: %.2f", pi->title, pi->author, pi->price);
-    printf("\n------------------------------\n");
+void show_books(Item *pi);
+
+char get_choice(void);
+
+char get_first(void);
+
+void eat_line(void);
+
+void add_book(List list);
+
+char *s_gets(char *string, int len);
+
+int main()
+{
+	List books;
+	int choice;
+
+	// 初始化链表
+	list_init(&books);
+
+	while ((choice = get_choice()) != 'q') {
+		switch (choice) {
+		case 'a':
+			add_book(books);
+			break;
+		case 'b':
+			list_for_each (books, show_books)
+				;
+			break;
+		case 'c':
+			printf("书籍个数：%d\n", list_count(books));
+			break;
+		case 'd':
+			list_clean(&books);
+			break;
+		default:
+			fprintf(stderr, "程序错误！\n");
+			break;
+		}
+	}
+	printf("再见！\n");
+
+	return 0;
 }
 
-int main() {
-    List books;
-    Item temp;
+void show_books(Item *pi)
+{
+	printf("title: %s\nauthor: %s\nprice: %.2f", pi->title, pi->author,
+	       pi->price);
+	printf("\n------------------------------\n");
+}
 
-    // 初始化链表
-    list_init(&books);
+char get_choice(void)
+{
+	int ch;
 
-    // 链表应该为空
-    if (list_is_empty(books))
-        printf("链表为空\n");
+	printf("输入您的选择：\n");
+	printf("a. 添加书籍		b. 查看书籍\n");
+	printf("c. 书籍个数		d. 清空书籍\n");
+	printf("q. 退出程序\n");
+	ch = get_first();
+	while ((ch < 'a' || ch > 'd') && ch != 'q') {
+		printf("输入错误，请重新输入：\n");
+		ch = get_first();
+	}
 
-    printf("链表中的节点数：%d\n", list_count(books));
+	return ch;
+}
 
-    // 加入一个节点
-    temp.title = "C Primer Plus 第6版";
-    temp.author = "史蒂芬·普拉达";
-    temp.price = 108.00;
-    list_append(&books, &temp);
+char get_first(void)
+{
+	int ch;
 
-    printf("链表中的节点数：%d\n", list_count(books));
+	ch = getchar();
+	eat_line();
 
-    list_for_each(books, show_books);
+	return ch;
+}
 
-    if (list_is_full())
-        printf("链表已满");
+inline void eat_line(void)
+{
+	while (getchar() != '\n')
+		continue;
+}
 
-    list_clean(&books);
+void add_book(List list)
+{
+	Item item;
 
-    printf("链表中的节点数：%d\n", list_count(books));
+	printf("书名：");
+	s_gets(item.title, MAX_TITLE);
+	printf("作者：");
+	s_gets(item.author, MAX_AUTHOR);
+	printf("价格：");
+	scanf("%lf", &item.price);
 
+	list_append(&list, &item);
+}
 
-    return 0;
+char *s_gets(char *string, int len)
+{
+	char *ret_val;
+	int i = 0;
+
+	ret_val = fgets(string, len, stdin);
+	if (ret_val) { // ret_val != NULL
+		while (string[i] != '\0' && string[i] != '\n')
+			i++;
+		if (string[i] == '\n')
+			string[i] = '\0';
+		else
+			eat_line();
+	}
+
+	return ret_val;
 }
