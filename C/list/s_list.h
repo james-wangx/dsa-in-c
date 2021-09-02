@@ -7,9 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_TITLE 50
-#define MAX_AUTHOR 50
-
 typedef struct book Item;
 
 typedef struct node Node;

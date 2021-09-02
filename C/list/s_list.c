@@ -6,6 +6,9 @@
 
 /*************************          数据 模型          *************************/
 
+#define MAX_TITLE 50
+#define MAX_AUTHOR 50
+
 struct book {
 	char title[MAX_TITLE];
 	char author[MAX_AUTHOR];
