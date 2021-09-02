@@ -33,20 +33,16 @@ typedef Node *List;
 
 void list_init(List *pl);
 
-int list_is_empty(List list);
-
-int list_is_full();
-
-unsigned int list_count(List list);
-
 void list_append(List *pl, Item *pi);
 
 void list_delete(List *pl, Item *pi);
 
 void list_insert(List list, Item *pi, Item *pos);
 
-void list_for_each (List list, void(*pf)(Item *));
-
 void list_clean(List *pl);
+
+unsigned int list_count(List list);
+
+void list_for_each (List list, void(*pf)(Item *));
 
 #endif // S_LIST_H_

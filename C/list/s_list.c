@@ -16,52 +16,6 @@ inline void list_init(List *pl)
 }
 
 /**
- * 判断链表是否为空
- * @param list 链表
- * @return
- */
-inline int list_is_empty(List list)
-{
-	if (list == NULL)
-		return 1;
-	return 0;
-}
-
-/**
- * 判断链表是否已满
- * @param plist 链表指针
- * @return
- */
-inline int list_is_full()
-{
-	Node *pn = (Node *)malloc(sizeof(Node));
-
-	if (pn == NULL)
-		return 1;
-	free(pn);
-
-	return 0;
-}
-
-/**
- * 计算链表内节点个数
- * @param list 链表
- * @return
- */
-unsigned int list_count(List list)
-{
-	unsigned int count = 0;
-
-	Node *pn = list;
-	while (pn != NULL) {
-		pn = pn->next;
-		count++;
-	}
-
-	return count;
-}
-
-/**
  * 向链表末尾添加一个节点
  * @param pl 链表指针
  * @param pi 节点内数据的指针
@@ -125,27 +79,12 @@ void list_insert(List list, Item *pi, Item *pos)
 	Node *pn = list;
 	Node *pn_new = (Node *)malloc(sizeof(Node));
 
-	while ((&pn->item != pos)&&(&pn->next->item != pos))
+	while ((&pn->item != pos) && (&pn->next->item != pos))
 		pn = pn->next;
 	pn_new->item = *pi;
 	pn_new->next = pn->next;
 	pn->next = pn_new;
 	puts("插入节点成功！");
-}
-
-/**
- * 传递给定函数遍历链表
- * @param list 链表
- * @param pf 函数指针
- */
-void list_for_each (List list, void(*pf)(Item *))
-{
-	Node *pn = list;
-
-	while (pn != NULL) {
-		(*pf)(&pn->item); // 执行函数
-		pn = pn->next;
-	}
 }
 
 /**
@@ -163,6 +102,41 @@ void list_clean(List *pl)
 	}
 	puts("清空链表成功！");
 }
+
+/**
+ * 计算链表内节点个数
+ * @param list 链表
+ * @return
+ */
+unsigned int list_count(List list)
+{
+	unsigned int count = 0;
+
+	Node *pn = list;
+	while (pn != NULL) {
+		pn = pn->next;
+		count++;
+	}
+
+	return count;
+}
+
+/**
+ * 传递给定函数遍历链表
+ * @param list 链表
+ * @param pf 函数指针
+ */
+void list_for_each (List list, void(*pf)(Item *))
+{
+	Node *pn = list;
+
+	while (pn != NULL) {
+		(*pf)(&pn->item); // 执行函数
+		pn = pn->next;
+	}
+}
+
+/*********************          static functions          *********************/
 
 /**
  * 找到给定节点的上一个节点
