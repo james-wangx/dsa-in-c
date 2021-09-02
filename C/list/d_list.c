@@ -20,22 +20,6 @@ void list_init(List *pl)
 }
 
 /**
- * 统计链表的节点数
- */
-unsigned int list_count(List list)
-{
-	Node *pn = list;
-	unsigned int count = 0;
-
-	while (pn != NULL) {
-		pn = pn->next;
-		count++;
-	}
-
-	return count;
-}
-
-/**
  * 向链表末尾添加一个节点
  */
 void list_append(List *pl, Item *pi)
@@ -77,6 +61,8 @@ void list_delete(List *pl, Item *pi)
 			List head = (*pl)->next;
 			head->prev = NULL;
 			free(*pl);
+			// 重新设置表头
+			*pl = head;
 		}
 	} else {
 		Node *pn = *pl;
@@ -84,6 +70,7 @@ void list_delete(List *pl, Item *pi)
 			pn = pn->next;
 		pn->prev->next = pn->next;
 		pn->next->prev = pn->prev;
+		free(pn);
 	}
 	puts("删除节点成功！");
 }
@@ -98,13 +85,16 @@ void list_insert(List list, Item *pi, Item *pos)
 
 	pn_new->item = *pi;
 
-	while ((list->item != *pos) && (pn->next->item != *pos))
+	while (pn->item != *pos)
 		pn = pn->next;
 
-	pn->next = pn_new;
+	// 先改变新节点，再改变旧节点
 	pn_new->prev = pn;
 	pn_new->next = pn->next;
-	pn->next->prev = pn_new;
+	// 如果pn为最后一个节点，则不用考虑下一个节点的prev
+	if (pn->next != NULL)
+		pn->next->prev = pn_new;
+	pn->next = pn_new;
 }
 
 /**
@@ -121,4 +111,46 @@ void list_clean(List *pl)
 		pn = pn_save;
 	}
 	puts("清空链表成功！");
+}
+
+/**
+ * 统计链表的节点数
+ */
+unsigned int list_count(List list)
+{
+	Node *pn = list;
+	unsigned int count = 0;
+
+	while (pn != NULL) {
+		pn = pn->next;
+		count++;
+	}
+
+	return count;
+}
+
+/**
+ * 查找指定元素并返回
+ */
+Item *list_search(List list, Item *pi)
+{
+	Node *pn = list;
+
+	while ((pn != NULL) && (pn->item != *pi))
+		pn = pn->next;
+
+	return &pn->item;
+}
+
+/**
+ * 将指定的函数作用与列表的每一个节点
+ */
+void list_for_each (List list, void(*pf)(Item *))
+{
+	Node *pn = list;
+
+	while (pn != NULL) {
+		(*pf)(&pn->item);
+		pn = pn->next;
+	}
 }
