@@ -4,22 +4,6 @@
 #include <string.h>
 #include "s_list.h"
 
-/*************************          数据 模型          *************************/
-
-#define MAX_TITLE 50
-#define MAX_AUTHOR 50
-
-struct book {
-	char title[MAX_TITLE];
-	char author[MAX_AUTHOR];
-	double price;
-};
-
-struct node {
-	Item item;
-	struct node *next;
-};
-
 static Node *find_pre(List list, Node *pn);
 
 /*************************          实现 ADT          *************************/

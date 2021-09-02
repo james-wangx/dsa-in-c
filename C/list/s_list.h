@@ -7,9 +7,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct book Item;
+#define MAX_TITLE 50
+#define MAX_AUTHOR 50
 
-typedef struct node Node;
+typedef struct book {
+	char title[MAX_TITLE];
+	char author[MAX_AUTHOR];
+	double price;
+} Item;
+
+typedef struct node {
+	Item item;
+	struct node *next;
+} Node;
 
 typedef Node *List;
 
