@@ -71,7 +71,8 @@ void list_append(List *pl, Item *pi)
 	// 1 创建一个节点并分配内存（判断内存是否已满）
 	Node *pn_new = (Node *)malloc(sizeof(Node));
 	if (pn_new == NULL) {
-		fprintf(stderr, "分配内存失败！内存不足！\n");
+		//		fprintf(stderr, "分配内存失败！内存不足！\n");
+		puts("分配内存失败！内存不足！");
 		return;
 	}
 
@@ -88,7 +89,7 @@ void list_append(List *pl, Item *pi)
 			pn = pn->next;
 		pn->next = pn_new;
 	}
-	fprintf(stdout, "添加节点成功！\n");
+	puts("添加节点成功！");
 }
 
 /**
@@ -110,7 +111,26 @@ void list_delete(List *pl, Item *pi)
 		pn_pre->next = pn->next;
 		free(pn);
 	}
-	printf("删除节点成功！");
+	puts("删除节点成功！");
+}
+
+/**
+ * 插入一个节点，插入到给定元素位置的后面
+ * @param list 链表
+ * @param pi 指向待插入的元素
+ * @param pos 指向待插入的元素的位置
+ */
+void list_insert(List list, Item *pi, Item *pos)
+{
+	Node *pn = list;
+	Node *pn_new = (Node *)malloc(sizeof(Node));
+
+	while ((&pn->item != pos)&&(&pn->next->item != pos))
+		pn = pn->next;
+	pn_new->item = *pi;
+	pn_new->next = pn->next;
+	pn->next = pn_new;
+	puts("插入节点成功！");
 }
 
 /**
@@ -141,7 +161,7 @@ void list_clean(List *pl)
 		free(*pl);
 		*pl = pn_save;
 	}
-	printf("清空链表成功！\n");
+	puts("清空链表成功！");
 }
 
 /**

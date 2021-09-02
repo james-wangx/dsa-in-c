@@ -43,6 +43,8 @@ void list_append(List *pl, Item *pi);
 
 void list_delete(List *pl, Item *pi);
 
+void list_insert(List list, Item *pi, Item *pos);
+
 void list_for_each (List list, void(*pf)(Item *));
 
 void list_clean(List *pl);

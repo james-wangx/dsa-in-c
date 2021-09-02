@@ -16,6 +16,10 @@ void add_book(List *pl);
 
 void delete_book(List *pl);
 
+void insert_book(List list);
+
+Item get_book(void);
+
 Item *search_book(List list);
 
 char *s_gets(char *string, int len);
@@ -56,8 +60,13 @@ int main(void)
 				printf("title: %s\nauthor: %s\nprice: %.2f\n",
 				       pi->title, pi->author, pi->price);
 			break;
+		case 'g': // 插入书籍
+			puts("请输入要插入的位置的书名");
+			insert_book(books);
+			break;
 		default:
-			fprintf(stderr, "程序错误！\n");
+			//			fprintf(stderr, "程序错误！\n");
+			puts("程序错误！\n");
 			break;
 		}
 	}
@@ -82,10 +91,11 @@ char get_choice(void)
 	printf("a. 添加书籍		b. 查看书籍\n");
 	printf("c. 书籍个数		d. 清空书籍\n");
 	printf("e. 删除书籍		f. 查找书籍\n");
+	printf("g. 插入书籍\n");
 	printf("q. 退出程序\n");
 	printf("输入您的选择：");
 	ch = get_first();
-	while ((ch < 'a' || ch > 'f') && ch != 'q') {
+	while ((ch < 'a' || ch > 'g') && ch != 'q') {
 		printf("输入错误，请重新输入：\n");
 		ch = get_first();
 	}
@@ -111,16 +121,7 @@ inline void eat_line(void)
 
 void add_book(List *pl)
 {
-	Item item;
-
-	printf("书名：");
-	s_gets(item.title, MAX_TITLE);
-	printf("作者：");
-	s_gets(item.author, MAX_AUTHOR);
-	printf("价格：");
-	scanf("%lf", &item.price);
-	eat_line();
-
+	Item item = get_book();
 	list_append(pl, &item);
 }
 
@@ -133,6 +134,33 @@ void delete_book(List *pl)
 	list_delete(pl, pi);
 }
 
+void insert_book(List list)
+{
+	Item *pos = search_book(list);
+
+	if (pos == NULL)
+		return;
+
+	Item item = get_book();
+	list_insert(list, &item, pos);
+}
+
+inline Item get_book(void)
+{
+	Item item;
+
+	printf("请输入将要添加/插入书籍的相关信息\n");
+	printf("书名：");
+	s_gets(item.title, MAX_TITLE);
+	printf("作者：");
+	s_gets(item.author, MAX_AUTHOR);
+	printf("价格：");
+	scanf("%lf", &item.price);
+	eat_line();
+
+	return item;
+}
+
 Item *search_book(List list)
 {
 	char title[MAX_TITLE];
@@ -143,7 +171,8 @@ Item *search_book(List list)
 		list = list->next;
 
 	if (list == NULL) {
-		fprintf(stderr, "书籍不存在！\n");
+		//		fprintf(stderr, "书籍不存在！\n");
+		puts("书籍不存在！");
 		return NULL;
 	}
 
