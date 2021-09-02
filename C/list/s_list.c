@@ -4,7 +4,22 @@
 #include <string.h>
 #include "s_list.h"
 
+/*************************          数据 模型          *************************/
+
+struct book {
+	char title[MAX_TITLE];
+	char author[MAX_AUTHOR];
+	double price;
+};
+
+struct node {
+	Item item;
+	struct node *next;
+};
+
 static Node *find_pre(List list, Node *pn);
+
+/*************************          实现 ADT          *************************/
 
 /**
  * 初始化链表为空
@@ -136,7 +151,7 @@ void list_for_each (List list, void(*pf)(Item *))
 	}
 }
 
-/*********************          static functions          *********************/
+/*************************          静态 函数          *************************/
 
 /**
  * 找到给定节点的上一个节点

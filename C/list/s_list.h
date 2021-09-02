@@ -10,24 +10,9 @@
 #define MAX_TITLE 50
 #define MAX_AUTHOR 50
 
-/**
- * 书籍结构
- */
-struct book {
-	char title[MAX_TITLE];
-	char author[MAX_AUTHOR];
-	double price;
-};
-
 typedef struct book Item;
 
-/**
- * 链表的节点
- */
-typedef struct node {
-	Item item;
-	struct node *next;
-} Node;
+typedef struct node Node;
 
 typedef Node *List;
 
