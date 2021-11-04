@@ -4,4 +4,4 @@ cmake-build*
 
 Python/demo/demo.py
 
-C/demo/demo.c
+demo/demo.c

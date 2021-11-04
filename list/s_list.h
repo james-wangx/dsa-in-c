@@ -1,8 +1,8 @@
-// s_list.c - 2021年 八月 30日
-// 最简单的单向链表
+// s_list.h - 2021/11/4
+//
 
-#ifndef S_LIST_H_
-#define S_LIST_H_
+#ifndef DSAA_S_LIST_H
+#define DSAA_S_LIST_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,4 +37,4 @@ unsigned int list_count(List list);
 
 void list_for_each (List list, void(*pf)(Item *));
 
-#endif // S_LIST_H_
+#endif //DSAA_S_LIST_H

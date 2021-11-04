@@ -1,5 +1,8 @@
-// d_list.c - 2021年 九月 02日
+// d_list.h - 2021/11/4
 // 双链表ADT
+
+#ifndef DSAA_D_LIST_H
+#define DSAA_D_LIST_H
 
 typedef int Item;
 
@@ -22,3 +25,5 @@ unsigned int list_count(List list);
 Item *list_search(List list, Item *pi);
 
 void list_for_each (List list, void(*pf)(Item * pi));
+
+#endif //DSAA_D_LIST_H
