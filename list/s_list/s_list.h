@@ -1,5 +1,5 @@
 // s_list.h - 2021/11/4
-//
+// 简单单向链表
 
 #ifndef DSAA_S_LIST_H
 #define DSAA_S_LIST_H
@@ -25,11 +25,11 @@ typedef Node *List;
 
 void list_init(List *pl);
 
-void list_append(List *pl, Item *pi);
+void list_append(List *pl, const Item *pi);
 
-void list_delete(List *pl, Item *pi);
+void list_delete(List *pl, const Item *pi);
 
-void list_insert(List list, Item *pi, Item *pos);
+void list_insert(List list, const Item *pi, const Item *pos);
 
 void list_clean(List *pl);
 

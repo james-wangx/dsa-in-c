@@ -22,7 +22,7 @@ inline void list_init(List *pl)
  * @param pl 链表指针
  * @param pi 节点内数据的指针
  */
-void list_append(List *pl, Item *pi)
+void list_append(List *pl, const Item *pi)
 {
 	// 1 创建一个节点并分配内存（判断内存是否已满）
 	Node *pn_new = (Node *)malloc(sizeof(Node));
@@ -51,9 +51,9 @@ void list_append(List *pl, Item *pi)
 /**
  * 删除一个节点
  * @param pl 链表指针
- * @param pi 指向待删除的节点元素
+ * @param pi 指向待删除的节点数据
  */
-void list_delete(List *pl, Item *pi)
+void list_delete(List *pl, const Item *pi)
 {
 	Node *pn = *pl;
 
@@ -76,7 +76,7 @@ void list_delete(List *pl, Item *pi)
  * @param pi 指向待插入的元素
  * @param pos 指向待插入的元素的位置
  */
-void list_insert(List list, Item *pi, Item *pos)
+void list_insert(List list, const Item *pi, const Item *pos)
 {
 	Node *pn = list;
 	Node *pn_new = (Node *)malloc(sizeof(Node));

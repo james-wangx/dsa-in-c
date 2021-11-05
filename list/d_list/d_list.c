@@ -22,7 +22,7 @@ void list_init(List *pl)
 /**
  * 向链表末尾添加一个节点
  */
-void list_append(List *pl, Item *pi)
+void list_append(List *pl, const Item *pi)
 {
 	Node *pn_new = (Node *)malloc(sizeof(Node));
 
@@ -50,7 +50,7 @@ void list_append(List *pl, Item *pi)
 /**
  * 删除指定节点
  */
-void list_delete(List *pl, Item *pi)
+void list_delete(List *pl, const Item *pi)
 {
 	// 删除头节点
 	if ((*pl)->item == *pi) {
@@ -78,7 +78,7 @@ void list_delete(List *pl, Item *pi)
 /**
  * 向链表的指定位置处插入节点
  */
-void list_insert(List list, Item *pi, Item *pos)
+void list_insert(List list, const Item *pi, const Item *pos)
 {
 	Node *pn = list;
 	Node *pn_new = (Node *)malloc(sizeof(Node));
@@ -132,7 +132,7 @@ unsigned int list_count(List list)
 /**
  * 查找指定元素并返回
  */
-Item *list_search(List list, Item *pi)
+Item *list_search(List list, const Item *pi)
 {
 	Node *pn = list;
 
