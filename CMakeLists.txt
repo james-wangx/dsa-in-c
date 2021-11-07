@@ -8,3 +8,5 @@ add_executable(d_list list/d_list/d_list.c list/d_list/d_list_main.c)
 
 #add_executable(demo demo/demo.c)
 add_executable(list list/list.c)
+
+add_executable(test test.c)

@@ -19,8 +19,8 @@ struct person_head {
  * 普通结点
  */
 struct person {
-	struct list_head list;
 	int age;
+	struct list_head list;
 };
 
 int main(void)
@@ -28,7 +28,8 @@ int main(void)
 	int i;
 	struct person *p;
 	struct person_head head;
-	struct list_head *pos;
+	//	struct list_head *pos;
+	struct person *pos;
 
 	INIT_LIST_HEAD(&head.list);
 	head.len = 0;
@@ -39,8 +40,14 @@ int main(void)
 		list_add(&p->list, &head.list);
 	}
 
-	list_for_each (pos, &head.list) {
-		printf("age = %d\n", ((struct person *)pos)->age);
+	//	list_for_each (pos, &head.list) {
+	//		// 获取容器结构体的地址
+	//		p = list_entry(pos, struct person, list);
+	//		printf("age = %d\n", p->age);
+	//		head.len++;
+	//	}
+	list_for_each_entry (pos, &head.list, list) {
+		printf("age = %d\n", pos->age);
 		head.len++;
 	}
 
