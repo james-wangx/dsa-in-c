@@ -25,19 +25,9 @@
 		(type *)((char *)__mptr - offsetof(type, member));             \
 	})
 
-/**
- * 获取该结点的结构
- *
- * @param ptr 指向成员的指针
- * @param type 结构或枚举类型
- * @param member 结构或枚举的成员名
- */
-#define list_entry(ptr, type, member) container_of(ptr, type, member)
-
 struct list_head {
 	struct list_head *next, *prev;
 };
-
 /**
  * 初始化一个 list_head 结构
  * @param list 将被初始化的 list_head 结构
@@ -77,6 +67,69 @@ static inline void list_add(struct list_head *new, struct list_head *head)
 }
 
 /**
+ * 通过将待删除结点的前驱和后继指向彼此来删除结点。
+ * @param prev 待删除结点的前驱
+ * @param next 待删除结点的后继
+ *
+ * 这仅适用于我们已经知道前驱和后继的内部链表操作。
+ */
+static inline void __list_del(struct list_head *prev, struct list_head *next)
+{
+	next->prev = prev;
+	prev->next = next;
+}
+
+/**
+ * 删除链表中的结点
+ * @param entry 将被删除的结点
+ *
+ * 注意：在此之后 list_empty() 将不会返回 true，entry 处于未定义状态。
+ */
+static inline void list_del(struct list_head *entry)
+{
+	__list_del(entry->prev, entry->next);
+	entry->next = NULL;
+	entry->prev = NULL;
+}
+
+/**
+ * 获取该结点的结构
+ *
+ * @param ptr 指向成员的指针
+ * @param type 结构或枚举类型
+ * @param member 结构或枚举的成员名
+ */
+#define list_entry(ptr, type, member) container_of(ptr, type, member)
+
+/**
+ * 获取链表的首个结点
+ *
+ * @param ptr 链表头
+ * @param type 链表父容器类型
+ * @param member 链表在容器结构中的名称
+ */
+#define list_first_entry(ptr, type, member)                                    \
+	list_entry((ptr)->next, type, member)
+
+/**
+ * 获取链表的下一个结点
+ *
+ * @param pos 指向链表容器的指针
+ * @param member 链表在容器结构中的名称
+ */
+#define list_next_entry(pos, member)                                           \
+	list_entry((pos)->member.next, typeof(*(pos)), member)
+
+/**
+ * 判断此结点是否是链表的头结点
+ *
+ * @param pos 指向链表容器的指针
+ * @param head 你的链表头
+ * @param member 链表在容器结构中的名称
+ */
+#define list_entry_is_head(pos, head, member) (&(pos)->member == (head))
+
+/**
  * 遍历链表
  *
  * @param pos 一个链表头的地址，可以作为循环的游标
@@ -96,5 +149,19 @@ static inline void list_add(struct list_head *new, struct list_head *head)
 	for ((pos) = list_entry((head)->next, typeof(*(pos)), member);         \
 	     &(pos)->member != (head);                                         \
 	     (pos) = list_entry((pos)->member.next, typeof(*(pos)), member))
+
+/**
+ * 安全地遍历链表，避免删除结点后无法继续
+ *
+ * @param pos 指向容器结构体的临时位置指针
+ * @param n 临时存储下一个位置
+ * @param head 你的链表头
+ * @param member 链表在容器结构体中的名称
+ */
+#define list_for_each_entry_safe(pos, n, head, member)                         \
+	for ((pos) = list_first_entry(head, typeof(*(pos)), member),           \
+	    (n) = list_next_entry(pos, member);                                \
+	     !list_entry_is_head(pos, head, member);                           \
+	     (pos) = (n), (n) = list_next_entry(n, member))
 
 #endif // _DSAA_LIST_H

@@ -26,10 +26,11 @@ struct person {
 int main(void)
 {
 	int i;
-	struct person *p;
+	struct person *p; // 临时数据
 	struct person_head head;
 	//	struct list_head *pos;
-	struct person *pos;
+	struct person *pos; // 临时位置
+	struct person *n; // 临时存储下个结点
 
 	INIT_LIST_HEAD(&head.list);
 	head.len = 0;
@@ -38,6 +39,7 @@ int main(void)
 		p = (struct person *)malloc(sizeof(struct person));
 		p->age = i * 10;
 		list_add(&p->list, &head.list);
+		head.len++;
 	}
 
 	//	list_for_each (pos, &head.list) {
@@ -46,10 +48,15 @@ int main(void)
 	//		printf("age = %d\n", p->age);
 	//		head.len++;
 	//	}
-	list_for_each_entry (pos, &head.list, list) {
+	list_for_each_entry_safe (pos, n, &head.list, list)
+		if (pos->age == 30 || pos->age == 10) {
+			list_del(&pos->list); // 摘链
+			free(pos); // 释放内存
+			head.len--;
+		}
+
+	list_for_each_entry (pos, &head.list, list)
 		printf("age = %d\n", pos->age);
-		head.len++;
-	}
 
 	printf("list len = %d\n", head.len);
 
