@@ -157,6 +157,40 @@ static inline void list_move_tail(struct list_head *list,
 }
 
 /**
+ * 测试结点 list 是否是链表 head 的第一个结点
+ * @param list 待测试的结点
+ * @param head 你的链表头
+ * @return 是为1，非为0
+ */
+static inline int list_is_first(const struct list_head *list,
+				const struct list_head *head)
+{
+	return list->prev == head;
+}
+
+/**
+ * 测试结点 list 是否是链表 head 的最后一个结点
+ * @param list 待测试的结点
+ * @param head 你的链表头
+ * @return 是为1，非为0
+ */
+static inline int list_is_last(const struct list_head *list,
+			       const struct list_head *head)
+{
+	return list->next == head;
+}
+
+/**
+ * 测试链表是否为空
+ * @param head 你的链表头
+ * @return 空为1，非空为0
+ */
+static inline int list_empty(const struct list_head *head)
+{
+	return head->next == head;
+}
+
+/**
  * 获取该结点的结构
  *
  * @param ptr 指向成员的指针
@@ -265,7 +299,7 @@ static inline void list_move_tail(struct list_head *list,
  * @param member 链表在容器结构体中的名称
  */
 #define list_for_each_entry_safe_reverse(pos, n, head, member)                 \
-	for ((pos) = list_last_entry(head, typeof(*(pos)), member),             \
+	for ((pos) = list_last_entry(head, typeof(*(pos)), member),            \
 	    (n) = list_prev_entry(pos, member);                                \
 	     !list_entry_is_head(pos, head, member);                           \
 	     (pos) = (n), (n) = list_prev_entry(n, member))
