@@ -31,6 +31,7 @@ int main(void)
 	//	struct list_head *pos;
 	struct person *pos; // 临时位置
 	struct person *n; // 临时存储下个结点
+	struct person new_obj = { 100 }; // 新结点
 
 	INIT_LIST_HEAD(&head.list);
 	head.len = 0;
@@ -48,12 +49,9 @@ int main(void)
 	//		printf("age = %d\n", p->age);
 	//		head.len++;
 	//	}
-	//	list_for_each_entry_safe (pos, n, &head.list, list)
-	//		if (pos->age == 30 || pos->age == 10) {
-	//			list_del(&pos->list); // 摘链
-	//			free(pos); // 释放内存
-	//			head.len--;
-	//		}
+		list_for_each_entry_safe (pos, n, &head.list, list)
+			if (pos->age == 30)
+				list_replace(&pos->list, &new_obj.list);
 
 	list_for_each_entry (pos, &head.list, list)
 		printf("age = %d\n", pos->age);

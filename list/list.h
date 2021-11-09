@@ -105,6 +105,21 @@ static inline void list_del(struct list_head *entry)
 }
 
 /**
+ * 替换链表内的结点
+ * @param old 将被替换的旧结点
+ * @param new 将要插入的新节点
+ *
+ * 如果旧结点是空的，它将被重写。
+ */
+static inline void list_replace(struct list_head *old, struct list_head *new)
+{
+	new->next = old->next;
+	new->next->prev = new;
+	new->prev = old->prev;
+	new->prev->next = new;
+}
+
+/**
  * 获取该结点的结构
  *
  * @param ptr 指向成员的指针
