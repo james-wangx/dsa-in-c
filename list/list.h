@@ -59,11 +59,23 @@ static inline void __list_add(struct list_head *new, struct list_head *prev,
  * @param new 将被添加的新结点
  * @param head 将要添加结点的链表头
  *
- * 在指定的链表后插入一个新结点。这对实现堆栈有帮助。
+ * 在指定的链表头后插入一个新结点。这对实现堆栈有帮助。
  */
 static inline void list_add(struct list_head *new, struct list_head *head)
 {
 	__list_add(new, head, head->next);
+}
+
+/**
+ * 添加一个新结点
+ * @param new 将被添加的新结点
+ * @param head 将要添加结点的链表头
+ *
+ * 在指定的链表头前插入一个新节点。这对实现堆栈有帮助。
+ */
+static inline void list_add_tail(struct list_head *new, struct list_head *head)
+{
+	__list_add(new, head->prev, head);
 }
 
 /**

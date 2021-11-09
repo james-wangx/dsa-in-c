@@ -38,7 +38,7 @@ int main(void)
 	for (i = 0; i < 5; i++) {
 		p = (struct person *)malloc(sizeof(struct person));
 		p->age = i * 10;
-		list_add(&p->list, &head.list);
+		list_add_tail(&p->list, &head.list);
 		head.len++;
 	}
 
@@ -48,12 +48,12 @@ int main(void)
 	//		printf("age = %d\n", p->age);
 	//		head.len++;
 	//	}
-	list_for_each_entry_safe (pos, n, &head.list, list)
-		if (pos->age == 30 || pos->age == 10) {
-			list_del(&pos->list); // 摘链
-			free(pos); // 释放内存
-			head.len--;
-		}
+	//	list_for_each_entry_safe (pos, n, &head.list, list)
+	//		if (pos->age == 30 || pos->age == 10) {
+	//			list_del(&pos->list); // 摘链
+	//			free(pos); // 释放内存
+	//			head.len--;
+	//		}
 
 	list_for_each_entry (pos, &head.list, list)
 		printf("age = %d\n", pos->age);
