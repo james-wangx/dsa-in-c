@@ -120,6 +120,43 @@ static inline void list_replace(struct list_head *old, struct list_head *new)
 }
 
 /**
+ * 用新的结点替换旧的结点，并初始化旧结点
+ * @param old 将被替换的旧结点
+ * @param new 即将插入的新结点
+ *
+ * 如果旧结点是空的，他将被重写。
+ */
+static inline void list_replace_init(struct list_head *old,
+				     struct list_head *new)
+{
+	list_replace(old, new);
+	INIT_LIST_HEAD(old);
+}
+
+/**
+ * 移动一个结点到另一个结点前
+ * @param list 要移动的结点
+ * @param head 指向另一个结点
+ */
+static inline void list_move(struct list_head *list, struct list_head *head)
+{
+	__list_del(list->prev, list->next);
+	list_add(list, head);
+}
+
+/**
+ * 移动一个结点到另一个结点后
+ * @param list 要移动的结点
+ * @param head 指向另一个结点
+ */
+static inline void list_move_tail(struct list_head *list,
+				  struct list_head *head)
+{
+	__list_del(list->prev, list->next);
+	list_add_tail(list, head);
+}
+
+/**
  * 获取该结点的结构
  *
  * @param ptr 指向成员的指针

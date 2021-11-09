@@ -51,7 +51,7 @@ int main(void)
 	//	}
 		list_for_each_entry_safe (pos, n, &head.list, list)
 			if (pos->age == 30)
-				list_replace(&pos->list, &new_obj.list);
+				list_move(&pos->list, &head.list);
 
 	list_for_each_entry (pos, &head.list, list)
 		printf("age = %d\n", pos->age);
