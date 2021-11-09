@@ -49,11 +49,16 @@ int main(void)
 	//		printf("age = %d\n", p->age);
 	//		head.len++;
 	//	}
-		list_for_each_entry_safe (pos, n, &head.list, list)
-			if (pos->age == 30)
-				list_move(&pos->list, &head.list);
+	list_for_each_entry_safe_reverse(pos, n, &head.list, list)
+		if (pos->age == 30)
+			list_move(&pos->list, &head.list);
 
-	list_for_each_entry (pos, &head.list, list)
+	list_for_each_entry(pos, &head.list, list)
+		printf("age = %d\n", pos->age);
+
+	printf("=================================\n");
+
+	list_for_each_entry_reverse (pos, &head.list, list)
 		printf("age = %d\n", pos->age);
 
 	printf("list len = %d\n", head.len);

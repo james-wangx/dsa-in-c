@@ -176,6 +176,15 @@ static inline void list_move_tail(struct list_head *list,
 	list_entry((ptr)->next, type, member)
 
 /**
+ * 获取链表的尾结点
+ *
+ * @param ptr 链表头
+ * @param type 链表父容器类型
+ * @param member 链表在容器结构中的名称
+ */
+#define list_last_entry(ptr, type, member) list_entry((ptr)->prev, type, member)
+
+/**
  * 获取链表的下一个结点
  *
  * @param pos 指向链表容器的指针
@@ -183,6 +192,15 @@ static inline void list_move_tail(struct list_head *list,
  */
 #define list_next_entry(pos, member)                                           \
 	list_entry((pos)->member.next, typeof(*(pos)), member)
+
+/**
+ * 获取链表的上一个结点
+ *
+ * @param pos 指向链表容器的指针
+ * @param member 链表在容器结构中的名称
+ */
+#define list_prev_entry(pos, member)                                           \
+	list_entry((pos)->member.prev, typeof(*(pos)), member)
 
 /**
  * 判断此结点是否是链表的头结点
@@ -204,7 +222,6 @@ static inline void list_move_tail(struct list_head *list,
 
 /**
  * 遍历链表
- *
  * @param pos 指向容器结构的指针
  * @param head 链表头指针
  * @param member 链表在容器结构中的名称
@@ -213,6 +230,17 @@ static inline void list_move_tail(struct list_head *list,
 	for ((pos) = list_entry((head)->next, typeof(*(pos)), member);         \
 	     &(pos)->member != (head);                                         \
 	     (pos) = list_entry((pos)->member.next, typeof(*(pos)), member))
+
+/**
+ * 反向遍历链表
+ * @param pos 指向容器结构的指针
+ * @param head 链表头指针
+ * @param member 链表在容器结构中的名称
+ */
+#define list_for_each_entry_reverse(pos, head, member)                         \
+	for ((pos) = list_entry((head)->prev, typeof(*(pos)), member);         \
+	     &(pos)->member != (head);                                         \
+	     (pos) = list_entry((pos)->member.prev, typeof(*(pos)), member))
 
 /**
  * 安全地遍历链表，避免删除结点后无法继续
@@ -227,5 +255,19 @@ static inline void list_move_tail(struct list_head *list,
 	    (n) = list_next_entry(pos, member);                                \
 	     !list_entry_is_head(pos, head, member);                           \
 	     (pos) = (n), (n) = list_next_entry(n, member))
+
+/**
+ * 安全地反向遍历链表，避免删除结点后无法继续
+ *
+ * @param pos 指向容器结构体的临时位置指针
+ * @param n 临时存储下一个位置
+ * @param head 你的链表头
+ * @param member 链表在容器结构体中的名称
+ */
+#define list_for_each_entry_safe_reverse(pos, n, head, member)                 \
+	for ((pos) = list_last_entry(head, typeof(*(pos)), member),             \
+	    (n) = list_prev_entry(pos, member);                                \
+	     !list_entry_is_head(pos, head, member);                           \
+	     (pos) = (n), (n) = list_prev_entry(n, member))
 
 #endif // _DSAA_LIST_H
