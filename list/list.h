@@ -6,7 +6,6 @@
 
 /**
  * 获取结构或枚举中成员的偏移量
- *
  * @param TYPE 结构或枚举
  * @param MEMBER 结构或枚举中的成员
  */
@@ -14,7 +13,6 @@
 
 /**
  * 获取 type 结构或枚举的地址
- *
  * @param ptr 指向成员的指针
  * @param type 结构或枚举类型
  * @param member 结构或枚举的成员名
@@ -28,6 +26,7 @@
 struct list_head {
 	struct list_head *next, *prev;
 };
+
 /**
  * 初始化一个 list_head 结构
  * @param list 将被初始化的 list_head 结构
@@ -192,7 +191,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 获取该结点的结构
- *
  * @param ptr 指向成员的指针
  * @param type 结构或枚举类型
  * @param member 结构或枚举的成员名
@@ -201,7 +199,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 获取链表的首个结点
- *
  * @param ptr 链表头
  * @param type 链表父容器类型
  * @param member 链表在容器结构中的名称
@@ -211,7 +208,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 获取链表的尾结点
- *
  * @param ptr 链表头
  * @param type 链表父容器类型
  * @param member 链表在容器结构中的名称
@@ -220,7 +216,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 获取链表的下一个结点
- *
  * @param pos 指向链表容器的指针
  * @param member 链表在容器结构中的名称
  */
@@ -238,7 +233,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 判断此结点是否是链表的头结点
- *
  * @param pos 指向链表容器的指针
  * @param head 你的链表头
  * @param member 链表在容器结构中的名称
@@ -247,7 +241,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 遍历链表
- *
  * @param pos 一个链表头的地址，可以作为循环的游标
  * @param head 你的链表头
  */
@@ -278,7 +271,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 安全地遍历链表，避免删除结点后无法继续
- *
  * @param pos 指向容器结构体的临时位置指针
  * @param n 临时存储下一个位置
  * @param head 你的链表头
@@ -292,7 +284,6 @@ static inline int list_empty(const struct list_head *head)
 
 /**
  * 安全地反向遍历链表，避免删除结点后无法继续
- *
  * @param pos 指向容器结构体的临时位置指针
  * @param n 临时存储下一个位置
  * @param head 你的链表头
