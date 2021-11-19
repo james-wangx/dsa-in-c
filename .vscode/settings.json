@@ -2,5 +2,10 @@
     // 制表符宽度为 8
     "editor.tabSize": 8,
     // 80 个等宽字符后设置垂直标尺
-    "editor.rulers": [80],
+    "editor.rulers": [
+        80
+    ],
+    "files.associations": {
+        "cstdlib": "c"
+    },
 }
