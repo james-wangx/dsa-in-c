@@ -25,7 +25,7 @@ static inline void swap(int *pos, int *min)
  * @param arr 待排序的数组
  * @param size 数组大小
  */
-static void selection_sort(int *arr, int size)
+static void selection_sort(int *arr, const int size)
 {
 	for (int i = 0; i < size - 1; i++) {
 		int min = i;
@@ -48,13 +48,14 @@ static void test()
 	int *arr = (int *)calloc(size, sizeof(int));
 
 	// 生成 -50 到 49 之间的随机数
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++)
 		arr[i] = (rand() % 100) - 50;
-	}
+
 	selection_sort(arr, size);
-	for (int i = 0; i < size - 1; ++i) {
+
+	for (int i = 0; i < size - 1; ++i)
 		assert(arr[i] <= arr[i + 1]);
-	}
+
 	free(arr);
 }
 
