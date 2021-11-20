@@ -12,3 +12,4 @@ add_executable(list list/list.c)
 add_executable(test test.c)
 
 add_executable(selection_sort sorting/selection_sort.c)
+add_executable(bubble_sort sorting/bubble_sort.c)

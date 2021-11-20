@@ -1,5 +1,10 @@
-// list.h - 2021/11/7
-// Linux 内核链表
+/**
+ * @file list.h
+ * @date 2021-11-20
+ * @author Pineapple (pineapple_cpp@163.com)
+ * 
+ * @brief Linux 内核链表
+ */
 
 #ifndef _DSAA_LIST_H
 #define _DSAA_LIST_H

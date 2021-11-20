@@ -1,5 +1,10 @@
-// selection_sort.c - 2021/11/9
-// 选择排序
+/**
+ * @file selection_sort.c
+ * @date 2021-11-20
+ * @author Pineapple (pineapple_cpp@163.com)
+ * 
+ * @brief 选择排序
+ */
 
 #include <assert.h>
 #include <stdio.h>

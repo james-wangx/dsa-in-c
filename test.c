@@ -1,28 +1,21 @@
-// test.c - 2021/11/7
-//
+/**
+ * @file test.c
+ * @date 2021-11-20
+ * @author Pineapple (pineapple_cpp@163.com)
+ * 
+ * @brief 测试代码
+ */
 
 #include <stdio.h>
-
-#include "list/list.h"
-
-struct person {
-	int age;
-	short ch;
-	short ch2;
-	struct list_head list;
-};
-
-static void for_test1(struct person *p)
-{
-	printf("%u\n%u\n", (unsigned int)&p->ch2, (unsigned int)&p->list);
-}
+#include <time.h>
+#include <stdint.h>
 
 int main(void)
 {
-	struct person head;
-	for_test1(NULL);
+	time_t result = time(NULL);
 
-	printf("%u\n", &((struct person *)0)->ch);
+	printf("The current time is %s(%jd seconds since the Epoch)\n",
+	       asctime(gmtime(&result)), (intmax_t)result);
 
 	return 0;
 }

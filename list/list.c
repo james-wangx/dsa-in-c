@@ -1,5 +1,10 @@
-// list.c - 2021/11/7
-// Linux 内核链表
+/**
+ * @file list.c
+ * @date 2021-11-20
+ * @author Pineapple (pineapple_cpp@163.com)
+ * 
+ * @brief 内核链表测试
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

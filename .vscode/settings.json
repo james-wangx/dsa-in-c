@@ -6,6 +6,7 @@
         80
     ],
     "files.associations": {
+        "*.h": "c",
         "cstdlib": "c"
     },
 }
