@@ -1,72 +1,67 @@
 /**
  * @file list.c
- * @date 2021-11-20
+ * @date 2021-11-22
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 内核链表测试
  */
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "list.h"
 
-/**
- * 头结点
- * 使用头结点的数据域记录链表长度
- */
-struct person_head {
-	struct list_head list;
-	int len;
+struct book_head {
+	int number; // 记录链表元素数
+	struct list_head head;
 };
 
-/**
- * 普通结点
- */
-struct person {
-	int age;
-	struct list_head list;
+struct book {
+	int id;
+	struct list_head head;
 };
+
+static void test()
+{
+	struct book_head book_list_head;
+	struct list_head *list_cursor; // 链表游标
+	struct book *book_entry;
+	struct book *book_temp;
+	const int count = 100;
+	int temp = 0;
+
+	INIT_LIST_HEAD(&book_list_head.head); // 初始化链表
+
+	for (int i = 0; i < count; i++) { // 尾插法插入元素
+		book_entry = (struct book *)malloc(sizeof(struct book));
+		book_entry->id = i;
+		list_add_tail(&book_entry->head, &book_list_head.head);
+		book_list_head.number++;
+	}
+
+	printf("Testing list_add_tail......");
+	list_for_each (list_cursor, &book_list_head.head) {
+		book_entry = list_entry(list_cursor, struct book, head);
+		assert(temp == book_entry->id);
+		temp++;
+	}
+	puts(" OK!");
+
+	printf("Testing list_del......");
+	list_for_each_entry_safe (book_entry, book_temp, &book_list_head.head,
+				  head) {
+		list_del(&book_entry->head);
+		free(book_entry);
+		book_list_head.number--;
+	}
+	if (list_empty(&book_list_head.head))
+		puts(" OK!");
+}
 
 int main(void)
 {
-	int i;
-	struct person *p; // 临时数据
-	struct person_head head;
-	//	struct list_head *pos;
-	struct person *pos; // 临时位置
-	struct person *n; // 临时存储下个结点
-	struct person new_obj = { 100 }; // 新结点
-
-	INIT_LIST_HEAD(&head.list);
-	head.len = 0;
-
-	for (i = 0; i < 5; i++) {
-		p = (struct person *)malloc(sizeof(struct person));
-		p->age = i * 10;
-		list_add_tail(&p->list, &head.list);
-		head.len++;
-	}
-
-	//	list_for_each (pos, &head.list) {
-	//		// 获取容器结构体的地址
-	//		p = list_entry(pos, struct person, list);
-	//		printf("age = %d\n", p->age);
-	//		head.len++;
-	//	}
-	list_for_each_entry_safe_reverse (pos, n, &head.list, list)
-		if (pos->age == 30)
-			list_move(&pos->list, &head.list);
-
-	list_for_each_entry (pos, &head.list, list)
-		printf("age = %d\n", pos->age);
-
-	printf("=================================\n");
-
-	list_for_each_entry_reverse (pos, &head.list, list)
-		printf("age = %d\n", pos->age);
-
-	printf("list len = %d\n", head.len);
+	test();
 
 	return 0;
 }
