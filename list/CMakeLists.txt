@@ -1,0 +1,1 @@
+add_library(list doubly_linked_list.c singly_linked_list.c)

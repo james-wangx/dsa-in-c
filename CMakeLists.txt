@@ -1,15 +1,11 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.15)
 project(dsaa C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(s_list list/s_list/s_list.c list/s_list/s_list_main.c)
-add_executable(d_list list/d_list/d_list.c list/d_list/d_list_main.c)
-add_executable(singly_linked_list list/singly_linked_list.c)
-add_executable(doubly_linked_list list/doubly_linked_list.c)
+add_subdirectory(list)
 
-#add_executable(demo demo/demo.c)
-add_executable(list list/list.c)
+add_executable(linked_list list/list.c)
 
 add_executable(test test.c)
 

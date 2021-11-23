@@ -6,6 +6,8 @@
  * @brief Linux 内核链表
  */
 
+#include <stdio.h>
+
 #ifndef _DSAA_LIST_H
 #define _DSAA_LIST_H
 

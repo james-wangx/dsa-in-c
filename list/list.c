@@ -3,7 +3,7 @@
  * @date 2021-11-22
  * @author Pineapple (pineapple_cpp@163.com)
  * 
- * @brief 内核链表测试
+ * @brief 链表测试
  */
 
 #include <assert.h>
@@ -11,6 +11,8 @@
 #include <stdlib.h>
 
 #include "list.h"
+#include "singly_linked_list.h"
+#include "doubly_linked_list.h"
 
 struct book_head {
 	int number; // 记录链表元素数
