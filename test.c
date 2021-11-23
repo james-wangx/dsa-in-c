@@ -6,16 +6,9 @@
  * @brief 测试代码
  */
 
-#include <stdio.h>
-#include <time.h>
-#include <stdint.h>
+#include "list/singly_linked_list.h"
 
 int main(void)
 {
-	time_t result = time(NULL);
-
-	printf("The current time is %s(%jd seconds since the Epoch)\n",
-	       asctime(gmtime(&result)), (intmax_t)result);
-
 	return 0;
 }
