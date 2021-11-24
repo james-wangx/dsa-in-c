@@ -11,8 +11,8 @@
 #include <stdlib.h>
 
 #include "list.h"
-#include "singly_linked_list.h"
-#include "doubly_linked_list.h"
+// #include "singly_linked_list.h"
+// #include "doubly_linked_list.h"
 
 struct book_head {
 	int number; // 记录链表元素数

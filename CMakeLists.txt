@@ -7,6 +7,8 @@ add_subdirectory(list)
 
 add_executable(linked_list list/list.c)
 
+add_executable(test_polynomial list/test_polynomial.c list/polynomial.c)
+
 add_executable(test test.c)
 
 add_executable(selection_sort sorting/selection_sort.c)

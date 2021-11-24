@@ -6,7 +6,8 @@
  * @brief 双链表
  */
 
-#include <stdio.h>
+#ifndef _DSAA_DOUBLY_LINKED_LIST_H
+#define _DSAA_DOUBLY_LINKED_LIST_H
 
 struct Node;
 typedef int ElementType;
@@ -23,3 +24,5 @@ void Delete(ElementType X, List L);
 void DeleteList(List L);
 Position Header(List L);
 Position First(List L);
+
+#endif // _DSAA_DOUBLY_LINKED_LIST_H
