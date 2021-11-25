@@ -38,7 +38,7 @@ void ListForEach(List list, void (*func)(Pitem));
 void ListClean(List list);
 
 List PolyAdd(List list1, List list2, List new);
-List PolyMin(List list1, List list2);
-List PolyMul(List list1, List list2);
+List PolyMin(List list1, List list2, List new);
+List PolyMul(List list1, List list2, List new);
 
 #endif // _DSAA_POLYNOMIAL_H

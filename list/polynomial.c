@@ -182,6 +182,7 @@ void ListClean(List list)
  * 
  * @param list1 
  * @param list2 
+ * @param new
  */
 List PolyAdd(List list1, List list2, List new)
 {
@@ -207,9 +208,30 @@ List PolyAdd(List list1, List list2, List new)
  * 
  * @param list1 
  * @param list2 
+ * @param new
  */
-List PolyMin(List list1, List list2)
+List PolyMin(List list1, List list2, List new)
 {
+	Position pos1 = list1->next;
+	Position pos2 = list2->next;
+
+	ListInit(new);
+
+	while (pos1 != NULL) {
+		ListAdd(new, &pos1->item);
+		pos1 = pos1->next;
+	}
+	while (pos2 != NULL) {
+		Position pos = (Position)malloc(sizeof(struct node));
+		pos->item.coefficient = -pos2->item.coefficient;
+		pos->item.exponent = pos2->item.exponent;
+		Position last = ListLast(new);
+		last->next = pos;
+		pos->next = NULL;
+		pos2 = pos2->next;
+	}
+
+	return new;
 }
 
 /**
@@ -217,7 +239,8 @@ List PolyMin(List list1, List list2)
  * 
  * @param list1 
  * @param list2 
+ * @param new
  */
-List PolyMul(List list1, List list2)
+List PolyMul(List list1, List list2, List new)
 {
 }
