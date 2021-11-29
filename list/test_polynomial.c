@@ -15,7 +15,7 @@ void print_list(Pitem item)
 	if (item->coefficient > 0)
 		printf(" + %dx^%d", item->coefficient, item->exponent);
 	else if (item->coefficient < 0)
-		printf(" - %dx^%d", item->coefficient, item->exponent);
+		printf(" - %dx^%d", -item->coefficient, item->exponent);
 }
 
 int main(void)
@@ -42,10 +42,16 @@ int main(void)
 	ListForEach(&list2, print_list);
 	printf("\n");
 
-	// List poly = PolyAdd(&list1, &list2, &new);
-	List poly = PolyMin(&list1, &list2, &new);
+	List poly = PolyAdd(&list1, &list2, &new);
+	// List poly = PolyMin(&list1, &list2, &new);
 
 	printf("new: ");
+	ListForEach(poly, print_list);
+	printf("\n");
+
+	// 合并同类项
+	PolyMerge(poly);
+	printf("new2: ");
 	ListForEach(poly, print_list);
 	printf("\n");
 

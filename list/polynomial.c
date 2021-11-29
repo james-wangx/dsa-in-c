@@ -27,9 +27,20 @@ inline void ListInit(List list)
  * @param list 
  * @return _Bool 
  */
-_Bool ListIsEmpty(List list)
+inline _Bool ListIsEmpty(List list)
 {
 	return list->next == NULL;
+}
+
+/**
+ * @brief 判断是否为链表最后一项
+ * 
+ * @param pos 
+ * @return _Bool 
+ */
+inline _Bool PosIsLast(Position pos)
+{
+	return pos->next == NULL;
 }
 
 /**
@@ -100,6 +111,12 @@ void ListAdd(List list, Pitem item)
 	new->next = NULL;
 }
 
+static void __list_del(Position pos, Position prev)
+{
+	prev->next = pos->next;
+	free(pos);
+}
+
 /**
  * @brief 删除元素
  * 
@@ -111,8 +128,7 @@ void ListDel(List list, Pitem item)
 	Position pos = ListFind(list, item);
 	Position prev = ListFindPrev(list, item);
 
-	prev->next = pos->next;
-	free(pos);
+	__list_del(pos, prev);
 }
 
 /**
@@ -243,4 +259,19 @@ List PolyMin(List list1, List list2, List new)
  */
 List PolyMul(List list1, List list2, List new)
 {
+}
+
+/**
+ * @brief 合并同类项
+ * 
+ */
+void PolyMerge(List list)
+{
+	for (Position i = list->next; !PosIsLast(i); i = i->next)
+		for (Position j = i->next; j != NULL; j = j->next)
+			if (i->item.exponent == j->item.exponent) {
+				i->item.coefficient += j->item.coefficient;
+				Position prev = ListFindPrev(list, &j->item);
+				__list_del(j, prev);
+			}
 }

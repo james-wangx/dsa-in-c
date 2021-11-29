@@ -27,6 +27,7 @@ typedef PtrToNode Position;
 
 void ListInit(List list);
 _Bool ListIsEmpty(List list);
+_Bool PosIsLast(Position pos);
 Position ListLast(List list);
 Position ListFind(List list, Pitem item);
 Position ListFindPrev(List list, Pitem item);
@@ -40,5 +41,6 @@ void ListClean(List list);
 List PolyAdd(List list1, List list2, List new);
 List PolyMin(List list1, List list2, List new);
 List PolyMul(List list1, List list2, List new);
+void PolyMerge(List list);
 
 #endif // _DSAA_POLYNOMIAL_H
