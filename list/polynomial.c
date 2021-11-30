@@ -98,6 +98,18 @@ Position ListFindPrev(List list, Pitem item)
 /**
  * @brief 添加元素
  * 
+ * @param last 
+ * @param pos 
+ */
+static inline void __list_add(Position last, Position new)
+{
+	last->next = new;
+	new->next = NULL;
+}
+
+/**
+ * @brief 添加元素
+ * 
  * @param poly 
  * @param list 
  */
@@ -107,11 +119,10 @@ void ListAdd(List list, Pitem item)
 	Position new = (Position)malloc(sizeof(struct node));
 
 	new->item = *item;
-	last->next = new;
-	new->next = NULL;
+	__list_add(last, new);
 }
 
-static void __list_del(Position pos, Position prev)
+static inline void __list_del(Position pos, Position prev)
 {
 	prev->next = pos->next;
 	free(pos);
@@ -259,6 +270,21 @@ List PolyMin(List list1, List list2, List new)
  */
 List PolyMul(List list1, List list2, List new)
 {
+	ListInit(new);
+
+	for (Position pos1 = list1->next; pos1 != NULL; pos1 = pos1->next)
+		for (Position pos2 = list2->next; pos2 != NULL;
+		     pos2 = pos2->next) {
+			Position last = ListLast(new);
+			Position pos = (Position)malloc(sizeof(struct node));
+			pos->item.exponent =
+				pos1->item.exponent + pos2->item.exponent;
+			pos->item.coefficient =
+				pos1->item.coefficient * pos2->item.coefficient;
+			__list_add(last, pos);
+		}
+
+	return new;
 }
 
 /**
