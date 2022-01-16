@@ -1,6 +1,6 @@
 /**
  * @file bubble_sort.c
- * @date 2021-11-20
+ * @date 2022-01-16
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 冒泡排序
