@@ -7,6 +7,7 @@
  */
 
 #include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -33,11 +34,11 @@ static inline void swap(int *pos, int *next)
 static void bubble_sort(int *arr, int size)
 {
 	for (int i = 0; i < size - 1; i++) {
-		_Bool swapped = 0; // 设置标记，用于检查是否已排好序
+		bool swapped = false; // 设置标记，用于检查是否已排好序
 		for (int j = 0; j < size - i; j++)
 			if (arr[j] > arr[j + 1]) {
 				swap(arr + j, arr + j + 1);
-				swapped = 1;
+				swapped = true;
 			}
 		if (!swapped) // 未交换则排序完毕，跳出循环
 			break;
