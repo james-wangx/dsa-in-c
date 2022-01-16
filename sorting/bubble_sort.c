@@ -15,14 +15,14 @@
 /**
  * @brief 交换函数
  * 
- * @param pos 当前元素位置
- * @param next 下一个元素位置
+ * @param left 左边的元素
+ * @param right 右边的元素
  */
-static inline void swap(int *pos, int *next)
+static inline void swap(int *left, int *right)
 {
-	int temp = *pos;
-	*pos = *next;
-	*next = temp;
+	int temp = *left;
+	*left = *right;
+	*right = temp;
 }
 
 /**
