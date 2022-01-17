@@ -50,12 +50,6 @@ int main(void)
 	ListForEach(poly, print_list);
 	printf("\n");
 
-	// 合并同类项
-	PolyMerge(poly);
-	printf("new2: ");
-	ListForEach(poly, print_list);
-	printf("\n");
-
 	ListClean(&list1);
 	ListClean(&list2);
 	ListClean(poly);
