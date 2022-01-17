@@ -1,6 +1,6 @@
 /**
  * @file selection_sort.c
- * @date 2021-11-20
+ * @date 2021-01-17
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 选择排序
@@ -33,13 +33,12 @@ static inline void swap(int *pos, int *min)
 static void selection_sort(int *arr, const int size)
 {
 	for (int i = 0; i < size - 1; i++) {
-		int min = i;
-		int j = i + 1;
-		for (; j < size; j++)
-			if (arr[j] < arr[min])
-				min = j;
-		if (i != min)
-			swap(arr + i, arr + min);
+		int min_index = i;
+		for (int j = i + 1; j < size; j++)
+			if (arr[j] < arr[min_index])
+				min_index = j;
+		if (i != min_index)
+			swap(arr + i, arr + min_index);
 	}
 }
 
