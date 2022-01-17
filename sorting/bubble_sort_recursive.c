@@ -1,19 +1,19 @@
 /**
- * @file bubble_sort.c
- * @date 2022-01-16
+ * @file bubble_sort_recursive.c
+ * @date 2022-01-17
  * @author Pineapple (pineapple_cpp@163.com)
  * 
- * @brief 冒泡排序
+ * @brief 冒泡排序的递归实现
  */
 
 #include <assert.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 /**
- * @brief 交换函数
+ * @brief 交换两个元素的值
  * 
  * @param left 左边的元素
  * @param right 右边的元素
@@ -26,23 +26,27 @@ static inline void swap(int *left, int *right)
 }
 
 /**
- * @brief 冒泡排序
+ * @brief 冒泡排序的递归实现
  * 
  * @param arr 待排序的数组
- * @param size 数组大小
+ * @param size 未排序数组的大小
  */
-static void bubble_sort(int *arr, const int size)
+static void bubble_sort_recursive(int *arr, const int size)
 {
+	if (size == 1)
+		return;
+
+	bool swapped = false;
+
 	for (int i = 0; i < size - 1; i++) {
-		bool swapped = false; // 设置标记，用于检查是否已排好序
-		for (int j = 0; j < size - i; j++)
-			if (arr[j] > arr[j + 1]) {
-				swap(arr + j, arr + j + 1);
-				swapped = true;
-			}
-		if (!swapped) // 未交换则排序完毕，跳出循环
-			break;
+		if (arr[i] > arr[i + 1]) {
+			swap(arr + i, arr + i + 1);
+			swapped = true;
+		}
 	}
+
+	if (swapped)
+		bubble_sort_recursive(arr, size - 1);
 }
 
 /**
@@ -54,11 +58,11 @@ static void test()
 	const int size = rand() % 500; // 生成随机数组大小
 	int *arr = (int *)calloc(size, sizeof(int));
 
-	// 生成范围 -50 到 49 的随机数组
+	// 生成范围 -50 到 49 的随机值
 	for (int i = 0; i < size; i++)
 		arr[i] = rand() % 100 - 50;
 
-	bubble_sort(arr, size);
+	bubble_sort_recursive(arr, size);
 
 	for (int i = 0; i < size - 1; i++)
 		assert(arr[i] <= arr[i + 1]);
