@@ -1,6 +1,6 @@
 /**
  * @file bucket_sort.c
- * @date 2021-01-18
+ * @date 2022-01-18
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 桶排序
