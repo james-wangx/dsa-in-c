@@ -49,6 +49,8 @@ static void test()
 
 	for (int i = 0; i < size - 1; i++)
 		assert(arr[i] <= arr[i + 1]);
+
+	free(arr);
 }
 
 int main()
