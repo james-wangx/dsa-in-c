@@ -13,7 +13,7 @@
 
 #define MAX 100
 
-int bucket[MAX];
+int buckets[MAX];
 
 /**
  * @brief 桶式排序
@@ -24,11 +24,11 @@ int bucket[MAX];
 static void bucket_sort(int *arr, int size)
 {
 	for (int i = 0; i < size; i++)
-		bucket[arr[i]]++;
+		buckets[arr[i]]++;
 
 	for (int i = 0, j = 0; i < MAX; i++)
-		if (bucket[i] >= 1)
-			for (int k = 0; k < bucket[i]; k++) // 遍历重复值
+		if (buckets[i] >= 1)
+			for (int k = 0; k < buckets[i]; k++) // 遍历重复值
 				arr[j++] = i; // 重新赋值
 }
 
