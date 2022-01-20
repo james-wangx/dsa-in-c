@@ -68,17 +68,17 @@ static void radix_sort(int *arr, const int size)
  */
 static void test()
 {
-	const int size = 10;
+	const int size = rand() % 100;
 	int *arr = (int *)calloc(size, sizeof(int));
 
-	// 设置随机数范围 0 到 999
+	// 设置随机数范围 0 到 size * size - 1
 	for (int i = 0; i < size; i++)
 		arr[i] = rand() % (size * size);
 
 	radix_sort(arr, size);
 
 	for (int i = 0; i < size - 1; i++)
-		assert(arr[i] < arr[i + 1]);
+		assert(arr[i] <= arr[i + 1]);
 
 	free(arr);
 }
