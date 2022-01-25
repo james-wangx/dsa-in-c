@@ -8,7 +8,6 @@
 
 #include <assert.h>
 #include <math.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -19,7 +18,7 @@
  * @param size 数组大小
  * @return int 数组最大值
  */
-static int max(int *arr, const int size)
+static int max(const int *arr, const int size)
 {
 	int max_value = arr[0];
 	for (int i = 0; i < size - 1; i++)
@@ -37,20 +36,20 @@ static int max(int *arr, const int size)
  */
 static void radix_sort(int *arr, const int size)
 {
-	int max_dight = 1; // 最大位数默认为 1
+	int max_digit = 1; // 最大位数默认为 1
 	int max_value = max(arr, size);
 	int buckets[size][size], bucket_count[size];
 
 	// 计算最大位数
-	while (pow(10, max_dight) < max_value)
-		max_dight++;
+	while (pow(10, max_digit) < max_value)
+		max_digit++;
 
-	for (int dight = 0; dight < max_dight; dight++) {
+	for (int digit = 0; digit < max_digit; digit++) {
 		for (int i = 0; i < size; i++)
 			bucket_count[i] = 0;
 
 		for (int i = 0; i < size; i++) {
-			int remainder = (int)(arr[i] / pow(10, dight)) % 10;
+			int remainder = (int)(arr[i] / pow(10, digit)) % 10;
 			buckets[remainder][bucket_count[remainder]] = arr[i];
 			bucket_count[remainder]++;
 		}
