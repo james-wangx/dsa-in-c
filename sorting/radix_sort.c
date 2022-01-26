@@ -1,6 +1,6 @@
 /**
  * @file radix_sort.c
- * @date 2022-01-19
+ * @date 2022-01-26
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 基础排序的数组实现
@@ -21,8 +21,9 @@
 static int max(const int *arr, const int size)
 {
 	int max_value = arr[0];
-	for (int i = 0; i < size - 1; i++)
-		if (max_value < arr[i + 1])
+
+	for (int i = 1; i < size; i++)
+		if (arr[i] > max_value)
 			max_value = arr[i + 1];
 
 	return max_value;
@@ -38,7 +39,7 @@ static void radix_sort(int *arr, const int size)
 {
 	int max_digit = 1; // 最大位数默认为 1
 	int max_value = max(arr, size);
-	int buckets[size][size], bucket_count[size];
+	int buckets[10][size], bucket_count[size];
 
 	// 计算最大位数
 	while (pow(10, max_digit) < max_value)
@@ -63,7 +64,6 @@ static void radix_sort(int *arr, const int size)
 
 /**
  * @brief 测试函数
- * 
  */
 static void test()
 {
@@ -72,7 +72,7 @@ static void test()
 
 	// 设置随机数范围 0 到 size * size - 1
 	for (int i = 0; i < size; i++)
-		arr[i] = rand() % (size * size);
+		arr[i] = rand() % (int)pow(size, 3);
 
 	radix_sort(arr, size);
 
