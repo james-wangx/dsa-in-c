@@ -1,6 +1,6 @@
 /**
  * @file polynomial.h
- * @date 2022-01-17
+ * @date 2022-01-26
  * @author Pineapple (pineapple_cpp@163.com)
  * 
  * @brief 一元多项式 ADT
@@ -42,4 +42,4 @@ List PolyMin(List list1, List list2, List new);
 List PolyMul(List list1, List list2, List new);
 void PolyMerge(List list);
 
-#endif // _POLYNOMIAL_H
+#endif // _DSAA_POLYNOMIAL_H
