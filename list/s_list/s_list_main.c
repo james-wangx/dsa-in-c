@@ -1,5 +1,10 @@
-// s_list_main.c - 2021年 九月 01日
-// 测试单链表
+/**
+ * @file s_list_main.c
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 测试单链表
+ */
 
 #include <string.h>
 #include "s_list.h"

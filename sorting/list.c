@@ -1,7 +1,7 @@
 /**
  * @file list.c
- * @date 2022-01-26
- * @author Pineapple (pineapple_cpp@163.com)
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
  * 
  * @brief 链表实现
  */

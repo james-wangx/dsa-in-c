@@ -1,5 +1,10 @@
-// s_list.c - 2021年 八月 30日
-// 实现单链表
+/**
+ * @file s_list.c
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 实现单链表
+ */
 
 #include <string.h>
 #include "s_list.h"

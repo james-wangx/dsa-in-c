@@ -1,7 +1,7 @@
 /**
  * @file list.h
- * @date 2021-11-20
- * @author Pineapple (pineapple_cpp@163.com)
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
  * 
  * @brief Linux 内核链表
  */

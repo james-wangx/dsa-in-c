@@ -1,5 +1,10 @@
-// d_list_main.c - 2021年 九月 02日
-// 测试双链表
+/**
+ * @file d_list_main.c
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 测试双链表
+ */
 
 #include <stdio.h>
 #include "d_list.h"

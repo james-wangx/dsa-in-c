@@ -1,7 +1,7 @@
 /**
  * @file doubly_linked_list.h
- * @date 2021-11-23
- * @author Pineapple (pineapple_cpp@163.com)
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
  * 
  * @brief 双链表
  */

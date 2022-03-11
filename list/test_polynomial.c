@@ -1,7 +1,7 @@
 /**
  * @file test_polynomial.c
- * @date 2021-11-24
- * @author Pineapple (pineapple_cpp@163.com)
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
  * 
  * @brief 一元多项式 ADT 测试
  */

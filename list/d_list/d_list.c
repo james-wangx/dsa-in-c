@@ -1,5 +1,10 @@
-// d_list.c - 2021年 九月 02日
-// 实现双链表
+/**
+ * @file d_list.c
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 实现双链表
+ */
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,7 +1,7 @@
 /**
  * @file bubble_sort_recursive.c
- * @date 2022-01-17
- * @author Pineapple (pineapple_cpp@163.com)
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
  * 
  * @brief 冒泡排序的递归实现
  */

@@ -1,5 +1,10 @@
-// s_list.h - 2021/11/4
-// 简单单向链表
+/**
+ * @file s_list.h
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 简单单向链表
+ */
 
 #ifndef DSAA_S_LIST_H
 #define DSAA_S_LIST_H

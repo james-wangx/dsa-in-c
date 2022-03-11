@@ -1,5 +1,10 @@
-// d_list.h - 2021/11/4
-// 双链表ADT
+/**
+ * @file d_list.h
+ * @date 2022-03-11
+ * @author James Wang (pineapple_cpp@163.com)
+ * 
+ * @brief 双链表ADT
+ */
 
 #ifndef DSAA_D_LIST_H
 #define DSAA_D_LIST_H

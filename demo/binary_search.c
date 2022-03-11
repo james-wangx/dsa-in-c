@@ -1,5 +1,5 @@
 //
-// Created by pineapple on 2021/7/8.
+// Created by James Wang on 2021/7/8.
 //
 #include <stdio.h>
 #include <stdlib.h>
