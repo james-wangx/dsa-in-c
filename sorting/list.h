@@ -11,7 +11,7 @@
 
 #include <stdbool.h>
 
-struct node {
+typedef struct node {
 	int digit;
 	struct node *next;
 	struct node *prev;
