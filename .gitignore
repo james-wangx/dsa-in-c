@@ -2,6 +2,4 @@ cmake-build*
 
 .idea
 
-Python/demo/demo.py
-
 demo/demo.c
