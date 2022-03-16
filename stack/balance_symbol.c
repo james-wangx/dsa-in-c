@@ -38,12 +38,13 @@ int main(void)
 			if (sum == 81 || sum == 184 || sum == 248)
 				continue;
 			else
-				fatal_error("Error, symbol is not balance.");
+				fatal_error(
+					"Fatal error: symbol is not balance.");
 		}
 	}
 
 	if (!StackIsEmpty(stack))
-		fatal_error("Error, stack is not empty.");
+		fatal_error("Fatal error: stack is not empty.");
 
 	StackDispose(stack);
 	fclose(file);
