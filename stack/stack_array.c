@@ -30,7 +30,7 @@ struct StackRecord {
 Stack StackInit(const int max_element)
 {
 	if (max_element < min_stack_size)
-		fprintf(stderr, "Stack size is too small.");
+		throw_error("Stack size is too small.");
 
 	Stack stack = malloc(sizeof(struct StackRecord));
 	stack->array = malloc(sizeof(ElementType) * max_element);
@@ -82,8 +82,8 @@ void StackEmpty(Stack stack)
  */
 void StackPush(Stack stack, ElementType element)
 {
-	if (StackIsFull)
-		fprintf(stderr, "Stack is full.");
+	if (StackIsFull(stack))
+		throw_error("Stack is full.");
 	else
 		stack->array[++stack->top_of_stack] = element;
 }
@@ -96,7 +96,7 @@ void StackPush(Stack stack, ElementType element)
 void StackPop(Stack stack)
 {
 	if (StackIsEmpty(stack))
-		fprintf(stderr, "Stack is empty.");
+		throw_error("Stack is empty.");
 	else
 		stack->top_of_stack--;
 }
@@ -123,7 +123,7 @@ void StackDispose(Stack stack)
 ElementType StackTop(const Stack stack)
 {
 	if (StackIsEmpty(stack)) {
-		fprintf(stderr, "Stack is empty.");
+		throw_error("Stack is empty.");
 		return 0; // Return value used to avoid warning
 	}
 
@@ -139,7 +139,7 @@ ElementType StackTop(const Stack stack)
 ElementType StackTopAndPop(Stack stack)
 {
 	if (StackIsEmpty(stack)) {
-		fprintf(stderr, "Stack is empty.");
+		throw_error("Stack is empty.");
 		return 0; // Return value used to avoid warning
 	}
 

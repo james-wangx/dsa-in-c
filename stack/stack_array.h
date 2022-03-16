@@ -9,6 +9,7 @@
 #ifndef _DSAA_STACK_ARRSY_H
 #define DSAA_STACK_ARRSY_H
 
+#include <stdio.h>
 #include <stdbool.h>
 
 struct StackRecord;
@@ -24,5 +25,7 @@ void StackPop(Stack stack);
 void StackDispose(Stack stack);
 ElementType StackTop(const Stack stack);
 ElementType StackTopAndPop(Stack stack);
+
+#define throw_error(str) fprintf(stderr, "%s\n", str)
 
 #endif // DSAA_STACK_ARRSY_H
