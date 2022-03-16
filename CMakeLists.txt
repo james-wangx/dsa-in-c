@@ -6,6 +6,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_subdirectory(list)
 add_subdirectory(sorting)
+add_subdirectory(stack)
 
 add_executable(test test.c)
-
