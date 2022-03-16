@@ -32,18 +32,18 @@ int main(void)
 		if (ch == '{' || ch == '[' || ch == '(')
 			StackPush(stack, ch);
 		else {
-			int top = StackTop(stack);
+			int top = StackTopAndPop(stack);
 			int sum = top + ch;
 			// '(' + ')' = 81, '[' + ']' = 184, '{' + '}' = 248
 			if (sum == 81 || sum == 184 || sum == 248)
-				StackPop(stack);
+				continue;
 			else
-				throw_error("Error, symbol is not balance.");
+				fatal_error("Error, symbol is not balance.");
 		}
 	}
 
 	if (!StackIsEmpty(stack))
-		throw_error("Error, stack is not empty.");
+		fatal_error("Error, stack is not empty.");
 
 	StackDispose(stack);
 	fclose(file);
