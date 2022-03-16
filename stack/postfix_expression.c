@@ -17,27 +17,26 @@
 int main(void)
 {
 	Stack stack = StackInit(max_element);
-	char expression[] = { '6', '5', '2', '3', '+', '8', '*',
-			      '+', '3', '+', '*', '8', '-' };
-	int size = sizeof(expression);
+	char *expression = "6523+8*+3+*8-";
 
-	for (int i = 0; i < size; i++) {
-		switch (expression[i]) {
+	while (*expression != '\0') {
+		switch (*expression) {
 		case '+':
 			StackPush(stack, StackTopAndPop(stack) +
 						 StackTopAndPop(stack));
-			continue;
+			break;
 		case '-':
 			int subtrahend = StackTopAndPop(stack);
 			StackPush(stack, StackTopAndPop(stack) - subtrahend);
-			continue;
+			break;
 		case '*':
 			StackPush(stack, StackTopAndPop(stack) *
 						 StackTopAndPop(stack));
-			continue;
+			break;
 		default:
-			StackPush(stack, expression[i] - '0');
+			StackPush(stack, *expression - '0');
 		}
+		expression++;
 	}
 
 	printf("The result is: %d.\n", StackTop(stack));
