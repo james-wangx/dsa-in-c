@@ -6,6 +6,9 @@
  * @brief Stack of array
  */
 
+#ifndef _DSAA_STACK_H
+#define _DSAA_STACK_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -165,3 +168,5 @@ ElementType StackTopAndPop(Stack stack)
 
 	return stack->array[stack->top_of_stack--];
 }
+
+#endif // _DSAA_STACK_H
