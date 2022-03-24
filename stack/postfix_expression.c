@@ -25,10 +25,11 @@ int main(void)
 			StackPush(stack, StackTopAndPop(stack) +
 						 StackTopAndPop(stack));
 			break;
-		case '-':
+		case '-': {
 			int subtrahend = StackTopAndPop(stack);
 			StackPush(stack, StackTopAndPop(stack) - subtrahend);
 			break;
+		}
 		case '*':
 			StackPush(stack, StackTopAndPop(stack) *
 						 StackTopAndPop(stack));
