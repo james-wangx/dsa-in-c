@@ -41,13 +41,14 @@ int main(void)
 			// Highest priority, push it directly
 			StackPush(stack, '(');
 			break;
-		case ')':
+		case ')': {
 			// Pop all operators untill find '('
 			// Pop '(', but don't output
 			char temp;
 			while ((temp = StackTopAndPop(stack)) != '(')
 				putc(temp, stdout);
 			break;
+		}
 		default:
 			putc(*infix, stdout);
 		}
