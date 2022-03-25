@@ -150,7 +150,7 @@ Item *list_search(List list, const Item *pi)
 /**
  * 将指定的函数作用与列表的每一个节点
  */
-void list_for_each (List list, void(*pf)(Item *))
+void list_for_each (List list, void (*pf)(Item *))
 {
 	Node *pn = list;
 

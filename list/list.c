@@ -52,7 +52,7 @@ static void test()
 
 	printf("Testing list_del......");
 	list_for_each_entry_safe (book_entry, book_temp, &book_list_head.head,
-				  head) {
+							  head) {
 		list_del(&book_entry->head);
 		free(book_entry);
 		book_list_head.number--;

@@ -11,7 +11,7 @@
 
 typedef struct item {
 	int coefficient; // 系数
-	int exponent; // 指数
+	int exponent;	 // 指数
 } Item;
 
 typedef struct node {
@@ -34,7 +34,7 @@ void ListAdd(List list, Pitem item);
 void ListDel(List list, Pitem item);
 void ListInsert(List list, Pitem item);
 void ListInsertPrev(List list, Pitem item);
-void ListForEach(List list, void (*func)(Pitem));
+void ListForEach (List list, void (*func)(Pitem));
 void ListClean(List list);
 
 List PolyAdd(List list1, List list2, List new);

@@ -12,7 +12,7 @@
 #include "stack_array.h"
 
 // Stack implementation is a dynamically allocated array
-#define empty_tos (-1)
+#define empty_tos	   (-1)
 #define min_stack_size (5)
 
 struct StackRecord {

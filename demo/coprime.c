@@ -28,6 +28,5 @@ int main(void)
 				rel++;
 		}
 	}
-	printf("Percentage of relatively prime pairs is %f\n",
-	       (double)rel / tot);
+	printf("Percentage of relatively prime pairs is %f\n", (double)rel / tot);
 }

@@ -83,7 +83,7 @@ static int max_sub_sum(const int arr[], int left, int right)
 	}
 
 	return max3(max_left_sum, max_right_sum,
-		    max_left_border_sum + max_right_border_sum);
+				max_left_border_sum + max_right_border_sum);
 }
 
 __attribute__((unused)) int max_subsequence_sum3(const int arr[], int n)
@@ -99,8 +99,7 @@ int max_subsequence_sum4(const int arr[], int n)
 		this_sum += arr[i];
 		if (this_sum > max_sum)
 			max_sum = this_sum;
-		else if (this_sum <
-			 0) // 0很关键，因为我们认为子序列的和一定是大于0的
+		else if (this_sum < 0) // 0很关键，因为我们认为子序列的和一定是大于0的
 			this_sum =
 				0; // 所以当子序列和小于0时，重置其为0,抛弃索引i之前的所有元素
 	}

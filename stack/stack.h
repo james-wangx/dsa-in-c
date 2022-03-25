@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define empty_tos (-1)
+#define empty_tos	   (-1)
 #define min_stack_size (5)
 
 #define throw_error(str) fprintf(stderr, "%s\n", str)

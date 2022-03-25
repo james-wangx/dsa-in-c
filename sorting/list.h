@@ -27,7 +27,7 @@ void ListEmpty(List head);
 	for (pos = (head)->next; pos != head; pos = pos->next)
 
 #define ListForEachSafe(head, pos, next)                                       \
-	for (pos = (head)->next, next = pos->next; pos != head;                \
-	     pos = next, next = pos->next)
+	for (pos = (head)->next, next = pos->next; pos != head;                    \
+		 pos = next, next = pos->next)
 
 #endif //DSAA_LIST_H

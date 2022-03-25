@@ -109,7 +109,7 @@ Position ListFindPrev(const List list, const ElementType element)
 	Position pos = CursorSpace[list].next;
 
 	while (!ListIsLast(list, pos) &&
-	       CursorSpace[CursorSpace[pos].next].element == element)
+		   CursorSpace[CursorSpace[pos].next].element == element)
 		pos == CursorSpace[pos].next;
 
 	return pos;

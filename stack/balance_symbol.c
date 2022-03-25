@@ -38,8 +38,7 @@ int main(void)
 			if (sum == 81 || sum == 184 || sum == 248)
 				continue;
 			else
-				fatal_error(
-					"Fatal error: symbol is not balance.");
+				fatal_error("Fatal error: symbol is not balance.");
 		}
 	}
 

@@ -42,37 +42,37 @@ int main(void)
 
 	while ((choice = get_choice()) != 'q') {
 		switch (choice) {
-		case 'a': // 添加书籍
-			add_book(&books);
-			break;
-		case 'b': // 查看书籍
-			printf("---------书籍列表----------\n");
-			list_for_each (books, show_books)
-				;
-			break;
-		case 'c': // 书籍个数
-			printf("书籍个数：%d\n", list_count(books));
-			break;
-		case 'd': // 清空书籍
-			list_clean(&books);
-			break;
-		case 'e': // 删除书籍
-			delete_book(&books);
-			break;
-		case 'f': // 查找书籍
-			pi = search_book(books);
-			if (pi != NULL)
-				printf("title: %s\nauthor: %s\nprice: %.2f\n",
-				       pi->title, pi->author, pi->price);
-			break;
-		case 'g': // 插入书籍
-			puts("请输入要插入的位置的书名");
-			insert_book(books);
-			break;
-		default:
-			//			fprintf(stderr, "程序错误！\n");
-			puts("程序错误！\n");
-			break;
+			case 'a': // 添加书籍
+				add_book(&books);
+				break;
+			case 'b': // 查看书籍
+				printf("---------书籍列表----------\n");
+				list_for_each (books, show_books)
+					;
+				break;
+			case 'c': // 书籍个数
+				printf("书籍个数：%d\n", list_count(books));
+				break;
+			case 'd': // 清空书籍
+				list_clean(&books);
+				break;
+			case 'e': // 删除书籍
+				delete_book(&books);
+				break;
+			case 'f': // 查找书籍
+				pi = search_book(books);
+				if (pi != NULL)
+					printf("title: %s\nauthor: %s\nprice: %.2f\n", pi->title,
+						   pi->author, pi->price);
+				break;
+			case 'g': // 插入书籍
+				puts("请输入要插入的位置的书名");
+				insert_book(books);
+				break;
+			default:
+				//			fprintf(stderr, "程序错误！\n");
+				puts("程序错误！\n");
+				break;
 		}
 	}
 	list_clean(&books);
@@ -84,7 +84,7 @@ int main(void)
 void show_books(Item *pi)
 {
 	printf("title: %s\nauthor: %s\nprice: %.2f\n", pi->title, pi->author,
-	       pi->price);
+		   pi->price);
 	printf("---------------------------\n");
 }
 

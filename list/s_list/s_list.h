@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_TITLE 50
+#define MAX_TITLE  50
 #define MAX_AUTHOR 50
 
 typedef struct book {
@@ -40,6 +40,6 @@ void list_clean(List *pl);
 
 unsigned int list_count(List list);
 
-void list_for_each (List list, void(*pf)(Item *));
+void list_for_each (List list, void (*pf)(Item *));
 
 #endif //DSAA_S_LIST_H

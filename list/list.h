@@ -25,9 +25,9 @@
  * @param member 结构或枚举的成员名
  */
 #define container_of(ptr, type, member)                                        \
-	({                                                                     \
-		const typeof(((type *)0)->member) *__mptr = (ptr);             \
-		(type *)((char *)__mptr - offsetof(type, member));             \
+	({                                                                         \
+		const typeof(((type *)0)->member) *__mptr = (ptr);                     \
+		(type *)((char *)__mptr - offsetof(type, member));                     \
 	})
 
 struct list_head {
@@ -52,7 +52,7 @@ static inline void INIT_LIST_HEAD(struct list_head *list)
  * 这仅适用于我们已经知道前驱或后继的内部链表操作。
  */
 static inline void __list_add(struct list_head *new, struct list_head *prev,
-			      struct list_head *next)
+							  struct list_head *next)
 {
 	next->prev = new;
 	new->next = next;
@@ -133,7 +133,7 @@ static inline void list_replace(struct list_head *old, struct list_head *new)
  * 如果旧结点是空的，他将被重写。
  */
 static inline void list_replace_init(struct list_head *old,
-				     struct list_head *new)
+									 struct list_head *new)
 {
 	list_replace(old, new);
 	INIT_LIST_HEAD(old);
@@ -156,7 +156,7 @@ static inline void list_move(struct list_head *list, struct list_head *head)
  * @param head 指向另一个结点
  */
 static inline void list_move_tail(struct list_head *list,
-				  struct list_head *head)
+								  struct list_head *head)
 {
 	__list_del(list->prev, list->next);
 	list_add_tail(list, head);
@@ -169,7 +169,7 @@ static inline void list_move_tail(struct list_head *list,
  * @return 是为1，非为0
  */
 static inline int list_is_first(const struct list_head *list,
-				const struct list_head *head)
+								const struct list_head *head)
 {
 	return list->prev == head;
 }
@@ -181,7 +181,7 @@ static inline int list_is_first(const struct list_head *list,
  * @return 是为1，非为0
  */
 static inline int list_is_last(const struct list_head *list,
-			       const struct list_head *head)
+							   const struct list_head *head)
 {
 	return list->next == head;
 }
@@ -261,9 +261,9 @@ static inline int list_empty(const struct list_head *head)
  * @param member 链表在容器结构中的名称
  */
 #define list_for_each_entry(pos, head, member)                                 \
-	for ((pos) = list_entry((head)->next, typeof(*(pos)), member);         \
-	     &(pos)->member != (head);                                         \
-	     (pos) = list_entry((pos)->member.next, typeof(*(pos)), member))
+	for ((pos) = list_entry((head)->next, typeof(*(pos)), member);             \
+		 &(pos)->member != (head);                                             \
+		 (pos) = list_entry((pos)->member.next, typeof(*(pos)), member))
 
 /**
  * 反向遍历链表
@@ -272,9 +272,9 @@ static inline int list_empty(const struct list_head *head)
  * @param member 链表在容器结构中的名称
  */
 #define list_for_each_entry_reverse(pos, head, member)                         \
-	for ((pos) = list_entry((head)->prev, typeof(*(pos)), member);         \
-	     &(pos)->member != (head);                                         \
-	     (pos) = list_entry((pos)->member.prev, typeof(*(pos)), member))
+	for ((pos) = list_entry((head)->prev, typeof(*(pos)), member);             \
+		 &(pos)->member != (head);                                             \
+		 (pos) = list_entry((pos)->member.prev, typeof(*(pos)), member))
 
 /**
  * 安全地遍历链表，避免删除结点后无法继续
@@ -284,10 +284,10 @@ static inline int list_empty(const struct list_head *head)
  * @param member 链表在容器结构体中的名称
  */
 #define list_for_each_entry_safe(pos, n, head, member)                         \
-	for ((pos) = list_first_entry(head, typeof(*(pos)), member),           \
-	    (n) = list_next_entry(pos, member);                                \
-	     !list_entry_is_head(pos, head, member);                           \
-	     (pos) = (n), (n) = list_next_entry(n, member))
+	for ((pos) = list_first_entry(head, typeof(*(pos)), member),               \
+		(n) = list_next_entry(pos, member);                                    \
+		 !list_entry_is_head(pos, head, member);                               \
+		 (pos) = (n), (n) = list_next_entry(n, member))
 
 /**
  * 安全地反向遍历链表，避免删除结点后无法继续
@@ -297,9 +297,9 @@ static inline int list_empty(const struct list_head *head)
  * @param member 链表在容器结构体中的名称
  */
 #define list_for_each_entry_safe_reverse(pos, n, head, member)                 \
-	for ((pos) = list_last_entry(head, typeof(*(pos)), member),            \
-	    (n) = list_prev_entry(pos, member);                                \
-	     !list_entry_is_head(pos, head, member);                           \
-	     (pos) = (n), (n) = list_prev_entry(n, member))
+	for ((pos) = list_last_entry(head, typeof(*(pos)), member),                \
+		(n) = list_prev_entry(pos, member);                                    \
+		 !list_entry_is_head(pos, head, member);                               \
+		 (pos) = (n), (n) = list_prev_entry(n, member))
 
 #endif // _DSAA_LIST_H

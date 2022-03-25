@@ -133,7 +133,7 @@ unsigned int list_count(List list)
  * @param list 链表
  * @param pf 函数指针
  */
-void list_for_each (List list, void(*pf)(Item *))
+void list_for_each (List list, void (*pf)(Item *))
 {
 	Node *pn = list;
 

@@ -190,7 +190,7 @@ void ListInsertPrev(List list, Pitem item)
  * @param list 目标链表
  * @param func 指向将要执行的函数
  */
-void ListForEach(List list, void (*func)(Pitem))
+void ListForEach (List list, void (*func)(Pitem))
 {
 	Position pos = list->next;
 
@@ -288,12 +288,10 @@ List PolyMul(List list1, List list2, List new)
 	ListInit(new);
 
 	for (Position pos1 = list1->next; pos1 != NULL; pos1 = pos1->next)
-		for (Position pos2 = list2->next; pos2 != NULL;
-		     pos2 = pos2->next) {
+		for (Position pos2 = list2->next; pos2 != NULL; pos2 = pos2->next) {
 			Position last = ListLast(new);
 			Position pos = (Position)malloc(sizeof(struct node));
-			pos->item.exponent =
-				pos1->item.exponent + pos2->item.exponent;
+			pos->item.exponent = pos1->item.exponent + pos2->item.exponent;
 			pos->item.coefficient =
 				pos1->item.coefficient * pos2->item.coefficient;
 			__list_add(last, pos);

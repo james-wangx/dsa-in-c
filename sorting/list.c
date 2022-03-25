@@ -57,7 +57,7 @@ inline void ListAddTail(List head, int digit)
  */
 void ListEmpty(List head)
 {
-	Position  pos, next;
+	Position pos, next;
 	ListForEachSafe (head, pos, next)
 		free(pos);
 }

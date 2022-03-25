@@ -35,11 +35,13 @@ int main(void)
 	}
 
 	printf("list1: ");
-	ListForEach(&list1, print_list);
+	ListForEach (&list1, print_list)
+		;
 	printf("\n");
 
 	printf("list2: ");
-	ListForEach(&list2, print_list);
+	ListForEach (&list2, print_list)
+		;
 	printf("\n");
 
 	// List poly = PolyAdd(&list1, &list2, &new);
@@ -47,7 +49,8 @@ int main(void)
 	List poly = PolyMul(&list1, &list2, &new);
 
 	printf("new: ");
-	ListForEach(poly, print_list);
+	ListForEach (poly, print_list)
+		;
 	printf("\n");
 
 	ListClean(&list1);

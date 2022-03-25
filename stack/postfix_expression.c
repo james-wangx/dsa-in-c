@@ -21,21 +21,19 @@ int main(void)
 
 	while (*expression != '\0') {
 		switch (*expression) {
-		case '+':
-			StackPush(stack, StackTopAndPop(stack) +
-						 StackTopAndPop(stack));
-			break;
-		case '-': {
-			int subtrahend = StackTopAndPop(stack);
-			StackPush(stack, StackTopAndPop(stack) - subtrahend);
-			break;
-		}
-		case '*':
-			StackPush(stack, StackTopAndPop(stack) *
-						 StackTopAndPop(stack));
-			break;
-		default:
-			StackPush(stack, *expression - '0');
+			case '+':
+				StackPush(stack, StackTopAndPop(stack) + StackTopAndPop(stack));
+				break;
+			case '-': {
+				int subtrahend = StackTopAndPop(stack);
+				StackPush(stack, StackTopAndPop(stack) - subtrahend);
+				break;
+			}
+			case '*':
+				StackPush(stack, StackTopAndPop(stack) * StackTopAndPop(stack));
+				break;
+			default:
+				StackPush(stack, *expression - '0');
 		}
 		expression++;
 	}

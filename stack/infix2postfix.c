@@ -25,32 +25,32 @@ int main(void)
 
 	while (*infix != '\0') {
 		switch (*infix) {
-		case '+':
-			//Never pop '(' from the stack, except when processing ')'
-			while (!StackIsEmpty(stack) & StackTop(stack) != '(')
-				putc(StackTopAndPop(stack), stdout);
-			StackPush(stack, '+');
-			break;
-		case '*':
-			//Can't pop '+' and '(', only '*'
-			if (StackTop(stack) == '*')
-				putc(StackTopAndPop(stack), stdout);
-			StackPush(stack, '*');
-			break;
-		case '(':
-			// Highest priority, push it directly
-			StackPush(stack, '(');
-			break;
-		case ')': {
-			// Pop all operators untill find '('
-			// Pop '(', but don't output
-			char temp;
-			while ((temp = StackTopAndPop(stack)) != '(')
-				putc(temp, stdout);
-			break;
-		}
-		default:
-			putc(*infix, stdout);
+			case '+':
+				//Never pop '(' from the stack, except when processing ')'
+				while (!StackIsEmpty(stack) & StackTop(stack) != '(')
+					putc(StackTopAndPop(stack), stdout);
+				StackPush(stack, '+');
+				break;
+			case '*':
+				//Can't pop '+' and '(', only '*'
+				if (StackTop(stack) == '*')
+					putc(StackTopAndPop(stack), stdout);
+				StackPush(stack, '*');
+				break;
+			case '(':
+				// Highest priority, push it directly
+				StackPush(stack, '(');
+				break;
+			case ')': {
+				// Pop all operators untill find '('
+				// Pop '(', but don't output
+				char temp;
+				while ((temp = StackTopAndPop(stack)) != '(')
+					putc(temp, stdout);
+				break;
+			}
+			default:
+				putc(*infix, stdout);
 		}
 		infix++;
 	}

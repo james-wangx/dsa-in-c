@@ -28,7 +28,7 @@ static void bucket_sort(int *arr, int size)
 	for (int i = 0, j = 0; i < MAX; i++)
 		if (buckets[i] >= 1)
 			for (int k = 0; k < buckets[i]; k++) // 遍历重复值
-				arr[j++] = i; // 重新赋值
+				arr[j++] = i;					 // 重新赋值
 }
 
 /**

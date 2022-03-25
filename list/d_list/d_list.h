@@ -29,6 +29,6 @@ unsigned int list_count(List list);
 
 Item *list_search(List list, const Item *pi);
 
-void list_for_each (List list, void(*pf)(Item * pi));
+void list_for_each (List list, void (*pf)(Item *pi));
 
 #endif //DSAA_D_LIST_H

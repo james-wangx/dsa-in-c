@@ -59,7 +59,7 @@ static void radix_sort_list(int *arr, const int size)
 		// 重新赋值
 		for (int i = 0, j = 0; i < 10; i++) {
 			Position pos;
-			ListForEach(buckets + i, pos)
+			ListForEach (buckets + i, pos)
 				arr[j++] = pos->digit;
 		}
 
