@@ -14,11 +14,11 @@ typedef struct TreeNode *Position;
 typedef struct TreeNode *SearchTree;
 
 SearchTree TreeEmpty(SearchTree tree);
-Position TreeFind(SearchTree tree, int element);
-Position TreeFindMin(SearchTree tree);
-Position TreeFindMax(SearchTree tree);
-SearchTree TreeInsert(SearchTree tree, int element);
-SearchTree TreeDelete(SearchTree tree, int element);
+SearchTree TreeInsert(SearchTree tree, const int element);
+SearchTree TreeDelete(SearchTree tree, const int element);
+Position TreeFind(const SearchTree tree, const int element);
+Position TreeFindMin(const SearchTree tree);
+Position TreeFindMax(const SearchTree tree);
 int TreeRetrieve(Position pos);
 
 #endif // _DSAA_TREE_H
