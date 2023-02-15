@@ -20,13 +20,13 @@
  */
 static int max(const int *arr, const int size)
 {
-	int max_value = arr[0];
+		int max_value = arr[0];
 
-	for (int i = 1; i < size; i++)
-		if (arr[i] > max_value)
-			max_value = arr[i + 1];
+		for (int i = 1; i < size; i++)
+				if (arr[i] > max_value)
+						max_value = arr[i + 1];
 
-	return max_value;
+		return max_value;
 }
 
 /**
@@ -37,29 +37,29 @@ static int max(const int *arr, const int size)
  */
 static void radix_sort(int *arr, const int size)
 {
-	int max_digit = 1; // 最大位数默认为 1
-	int max_value = max(arr, size);
-	int buckets[10][size], bucket_count[size];
+		int max_digit = 1; // 最大位数默认为 1
+		int max_value = max(arr, size);
+		int buckets[10][size], bucket_count[size];
 
-	// 计算最大位数
-	while (pow(10, max_digit) < max_value)
-		max_digit++;
+		// 计算最大位数
+		while (pow(10, max_digit) < max_value)
+				max_digit++;
 
-	for (int digit = 0; digit < max_digit; digit++) {
-		for (int i = 0; i < size; i++)
-			bucket_count[i] = 0;
+		for (int digit = 0; digit < max_digit; digit++) {
+				for (int i = 0; i < size; i++)
+						bucket_count[i] = 0;
 
-		for (int i = 0; i < size; i++) {
-			int remainder = (int)(arr[i] / pow(10, digit)) % 10;
-			buckets[remainder][bucket_count[remainder]] = arr[i];
-			bucket_count[remainder]++;
+				for (int i = 0; i < size; i++) {
+						int remainder = (int)(arr[i] / pow(10, digit)) % 10;
+						buckets[remainder][bucket_count[remainder]] = arr[i];
+						bucket_count[remainder]++;
+				}
+
+				// 重新赋值
+				for (int i = 0, j = 0; i < size; i++)
+						for (int k = 0; k < bucket_count[i]; k++, j++)
+								arr[j] = buckets[i][k];
 		}
-
-		// 重新赋值
-		for (int i = 0, j = 0; i < size; i++)
-			for (int k = 0; k < bucket_count[i]; k++, j++)
-				arr[j] = buckets[i][k];
-	}
 }
 
 /**
@@ -67,25 +67,25 @@ static void radix_sort(int *arr, const int size)
  */
 static void test()
 {
-	const int size = rand() % 100;
-	int *arr = (int *)calloc(size, sizeof(int));
+		const int size = rand() % 100;
+		int *arr = (int *)calloc(size, sizeof(int));
 
-	// 设置随机数范围 0 到 size * size - 1
-	for (int i = 0; i < size; i++)
-		arr[i] = rand() % (int)pow(size, 3);
+		// 设置随机数范围 0 到 size * size - 1
+		for (int i = 0; i < size; i++)
+				arr[i] = rand() % (int)pow(size, 3);
 
-	radix_sort(arr, size);
+		radix_sort(arr, size);
 
-	for (int i = 0; i < size - 1; i++)
-		assert(arr[i] <= arr[i + 1]);
+		for (int i = 0; i < size - 1; i++)
+				assert(arr[i] <= arr[i + 1]);
 
-	free(arr);
+		free(arr);
 }
 
 int main(void)
 {
-	srand(time(NULL));
-	test();
+		srand(time(NULL));
+		test();
 
-	return 0;
+		return 0;
 }

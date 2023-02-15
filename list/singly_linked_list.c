@@ -12,8 +12,8 @@
 #include "singly_linked_list.h"
 
 struct Node {
-	ElementType Element;
-	Position Next;
+		ElementType Element;
+		Position Next;
 };
 
 /**
@@ -24,8 +24,8 @@ struct Node {
  */
 List MakeEmpty(List L)
 {
-	L->Next == NULL;
-	return L;
+		L->Next == NULL;
+		return L;
 }
 
 /**
@@ -36,7 +36,7 @@ List MakeEmpty(List L)
  */
 int IsEmpty(List L)
 {
-	return L->Next == NULL;
+		return L->Next == NULL;
 }
 
 /**
@@ -48,7 +48,7 @@ int IsEmpty(List L)
  */
 int IsLast(Position P, List L)
 {
-	return P->Next == NULL;
+		return P->Next == NULL;
 }
 
 /**
@@ -60,14 +60,14 @@ int IsLast(Position P, List L)
  */
 Position Find(ElementType X, List L)
 {
-	if (IsEmpty(L))
-		return NULL;
+		if (IsEmpty(L))
+				return NULL;
 
-	Position P = L->Next;
-	while (P != NULL && P->Element != X)
-		P = P->Next;
+		Position P = L->Next;
+		while (P != NULL && P->Element != X)
+				P = P->Next;
 
-	return P;
+		return P;
 }
 
 /**
@@ -78,10 +78,10 @@ Position Find(ElementType X, List L)
  */
 void Delete(ElementType X, List L)
 {
-	Position Prev = FindPrevious(X, L);
-	Position P = Prev->Next;
-	Prev->Next = P->Next;
-	free(P);
+		Position Prev = FindPrevious(X, L);
+		Position P = Prev->Next;
+		Prev->Next = P->Next;
+		free(P);
 }
 
 /**
@@ -93,14 +93,14 @@ void Delete(ElementType X, List L)
  */
 Position FindPrevious(ElementType X, List L)
 {
-	if (IsEmpty(L))
-		return NULL;
+		if (IsEmpty(L))
+				return NULL;
 
-	Position P = L->Next;
-	while (P->Next != NULL && P->Next->Element != X)
-		P = P->Next;
+		Position P = L->Next;
+		while (P->Next != NULL && P->Next->Element != X)
+				P = P->Next;
 
-	return P;
+		return P;
 }
 
 /**
@@ -112,10 +112,10 @@ Position FindPrevious(ElementType X, List L)
  */
 void Insert(ElementType X, List L, Position P)
 {
-	Position New = (Position)malloc(sizeof(struct Node));
-	New->Element = X;
-	New->Next = P->Next;
-	P->Next = New;
+		Position New = (Position)malloc(sizeof(struct Node));
+		New->Element = X;
+		New->Next = P->Next;
+		P->Next = New;
 }
 
 /**
@@ -125,17 +125,17 @@ void Insert(ElementType X, List L, Position P)
  */
 void DeleteList(List L)
 {
-	if (IsEmpty(L))
-		return;
+		if (IsEmpty(L))
+				return;
 
-	Position P = L->Next;
-	while (P != NULL) {
-		Position Next = P->Next;
-		free(P);
-		P = Next;
-	}
+		Position P = L->Next;
+		while (P != NULL) {
+				Position Next = P->Next;
+				free(P);
+				P = Next;
+		}
 
-	MakeEmpty(L);
+		MakeEmpty(L);
 }
 
 /**
@@ -146,7 +146,7 @@ void DeleteList(List L)
  */
 Position Header(List L)
 {
-	return L;
+		return L;
 }
 
 /**
@@ -157,8 +157,8 @@ Position Header(List L)
  */
 Position First(List L)
 {
-	if (IsEmpty(L))
-		return NULL;
+		if (IsEmpty(L))
+				return NULL;
 
-	return L->Next;
+		return L->Next;
 }

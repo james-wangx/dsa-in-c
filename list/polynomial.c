@@ -18,7 +18,7 @@
  */
 inline void ListInit(List list)
 {
-	list->next = NULL;
+		list->next = NULL;
 }
 
 /**
@@ -29,7 +29,7 @@ inline void ListInit(List list)
  */
 inline _Bool ListIsEmpty(List list)
 {
-	return list->next == NULL;
+		return list->next == NULL;
 }
 
 /**
@@ -40,7 +40,7 @@ inline _Bool ListIsEmpty(List list)
  */
 static inline _Bool __pos_is_last(Position pos)
 {
-	return pos->next == NULL;
+		return pos->next == NULL;
 }
 
 /**
@@ -50,15 +50,15 @@ static inline _Bool __pos_is_last(Position pos)
  */
 Position ListLast(List list)
 {
-	if (ListIsEmpty(list))
-		return list;
+		if (ListIsEmpty(list))
+				return list;
 
-	Position pos = list->next;
+		Position pos = list->next;
 
-	while (pos->next != NULL)
-		pos = pos->next;
+		while (pos->next != NULL)
+				pos = pos->next;
 
-	return pos;
+		return pos;
 }
 
 /**
@@ -70,12 +70,12 @@ Position ListLast(List list)
  */
 Position ListFind(List list, Pitem item)
 {
-	Position pos = list->next;
+		Position pos = list->next;
 
-	while (pos != NULL && &pos->item != item)
-		pos = pos->next;
+		while (pos != NULL && &pos->item != item)
+				pos = pos->next;
 
-	return pos;
+		return pos;
 }
 
 /**
@@ -87,12 +87,12 @@ Position ListFind(List list, Pitem item)
  */
 Position ListFindPrev(List list, Pitem item)
 {
-	Position pos = list->next;
+		Position pos = list->next;
 
-	while (pos->next != NULL && &pos->next->item != item)
-		pos = pos->next;
+		while (pos->next != NULL && &pos->next->item != item)
+				pos = pos->next;
 
-	return pos;
+		return pos;
 }
 
 /**
@@ -103,8 +103,8 @@ Position ListFindPrev(List list, Pitem item)
  */
 static inline void __list_add(Position last, Position new)
 {
-	last->next = new;
-	new->next = NULL;
+		last->next = new;
+		new->next = NULL;
 }
 
 /**
@@ -115,17 +115,17 @@ static inline void __list_add(Position last, Position new)
  */
 void ListAdd(List list, Pitem item)
 {
-	Position last = ListLast(list);
-	Position new = (Position)malloc(sizeof(struct node));
+		Position last = ListLast(list);
+		Position new = (Position)malloc(sizeof(struct node));
 
-	new->item = *item;
-	__list_add(last, new);
+		new->item = *item;
+		__list_add(last, new);
 }
 
 static inline void __list_del(Position pos, Position prev)
 {
-	prev->next = pos->next;
-	free(pos);
+		prev->next = pos->next;
+		free(pos);
 }
 
 /**
@@ -136,10 +136,10 @@ static inline void __list_del(Position pos, Position prev)
  */
 void ListDel(List list, Pitem item)
 {
-	Position pos = ListFind(list, item);
-	Position prev = ListFindPrev(list, item);
+		Position pos = ListFind(list, item);
+		Position prev = ListFindPrev(list, item);
 
-	__list_del(pos, prev);
+		__list_del(pos, prev);
 }
 
 /**
@@ -150,8 +150,8 @@ void ListDel(List list, Pitem item)
  */
 static inline void __list_insert(Position pos, Position new)
 {
-	new->next = pos->next;
-	pos->next = new;
+		new->next = pos->next;
+		pos->next = new;
 }
 
 /**
@@ -162,11 +162,11 @@ static inline void __list_insert(Position pos, Position new)
  */
 void ListInsert(List list, Pitem item)
 {
-	Position pos = ListFind(list, item);
-	Position new = (Position)malloc(sizeof(struct node));
+		Position pos = ListFind(list, item);
+		Position new = (Position)malloc(sizeof(struct node));
 
-	new->item = *item;
-	__list_insert(pos, new);
+		new->item = *item;
+		__list_insert(pos, new);
 }
 
 /**
@@ -177,11 +177,11 @@ void ListInsert(List list, Pitem item)
  */
 void ListInsertPrev(List list, Pitem item)
 {
-	Position prev = ListFindPrev(list, item);
-	Position new = (Position)malloc(sizeof(struct node));
+		Position prev = ListFindPrev(list, item);
+		Position new = (Position)malloc(sizeof(struct node));
 
-	new->item = *item;
-	__list_insert(prev, new);
+		new->item = *item;
+		__list_insert(prev, new);
 }
 
 /**
@@ -192,12 +192,12 @@ void ListInsertPrev(List list, Pitem item)
  */
 void ListForEach (List list, void (*func)(Pitem))
 {
-	Position pos = list->next;
+		Position pos = list->next;
 
-	while (pos != NULL) {
-		(*func)(&pos->item); // 执行函数
-		pos = pos->next;
-	}
+		while (pos != NULL) {
+				(*func)(&pos->item); // 执行函数
+				pos = pos->next;
+		}
 }
 
 /**
@@ -207,13 +207,13 @@ void ListForEach (List list, void (*func)(Pitem))
  */
 void ListClean(List list)
 {
-	Position pos = list->next;
+		Position pos = list->next;
 
-	while (pos != NULL) {
-		Position next = pos->next;
-		free(pos);
-		pos = next;
-	}
+		while (pos != NULL) {
+				Position next = pos->next;
+				free(pos);
+				pos = next;
+		}
 }
 
 /**
@@ -225,23 +225,23 @@ void ListClean(List list)
  */
 List PolyAdd(List list1, List list2, List new)
 {
-	Position pos1 = list1->next;
-	Position pos2 = list2->next;
+		Position pos1 = list1->next;
+		Position pos2 = list2->next;
 
-	ListInit(new);
+		ListInit(new);
 
-	while (pos1 != NULL) {
-		ListAdd(new, &pos1->item);
-		pos1 = pos1->next;
-	}
-	while (pos2 != NULL) {
-		ListAdd(new, &pos2->item);
-		pos2 = pos2->next;
-	}
+		while (pos1 != NULL) {
+				ListAdd(new, &pos1->item);
+				pos1 = pos1->next;
+		}
+		while (pos2 != NULL) {
+				ListAdd(new, &pos2->item);
+				pos2 = pos2->next;
+		}
 
-	PolyMerge(new);
+		PolyMerge(new);
 
-	return new;
+		return new;
 }
 
 /**
@@ -253,27 +253,27 @@ List PolyAdd(List list1, List list2, List new)
  */
 List PolyMin(List list1, List list2, List new)
 {
-	Position pos1 = list1->next;
-	Position pos2 = list2->next;
+		Position pos1 = list1->next;
+		Position pos2 = list2->next;
 
-	ListInit(new);
+		ListInit(new);
 
-	while (pos1 != NULL) {
-		ListAdd(new, &pos1->item);
-		pos1 = pos1->next;
-	}
-	while (pos2 != NULL) {
-		Position pos = (Position)malloc(sizeof(struct node));
-		pos->item.coefficient = -pos2->item.coefficient;
-		pos->item.exponent = pos2->item.exponent;
-		Position last = ListLast(new);
-		__list_add(last, pos);
-		pos2 = pos2->next;
-	}
+		while (pos1 != NULL) {
+				ListAdd(new, &pos1->item);
+				pos1 = pos1->next;
+		}
+		while (pos2 != NULL) {
+				Position pos = (Position)malloc(sizeof(struct node));
+				pos->item.coefficient = -pos2->item.coefficient;
+				pos->item.exponent = pos2->item.exponent;
+				Position last = ListLast(new);
+				__list_add(last, pos);
+				pos2 = pos2->next;
+		}
 
-	PolyMerge(new);
+		PolyMerge(new);
 
-	return new;
+		return new;
 }
 
 /**
@@ -285,21 +285,21 @@ List PolyMin(List list1, List list2, List new)
  */
 List PolyMul(List list1, List list2, List new)
 {
-	ListInit(new);
+		ListInit(new);
 
-	for (Position pos1 = list1->next; pos1 != NULL; pos1 = pos1->next)
-		for (Position pos2 = list2->next; pos2 != NULL; pos2 = pos2->next) {
-			Position last = ListLast(new);
-			Position pos = (Position)malloc(sizeof(struct node));
-			pos->item.exponent = pos1->item.exponent + pos2->item.exponent;
-			pos->item.coefficient =
-				pos1->item.coefficient * pos2->item.coefficient;
-			__list_add(last, pos);
-		}
+		for (Position pos1 = list1->next; pos1 != NULL; pos1 = pos1->next)
+				for (Position pos2 = list2->next; pos2 != NULL; pos2 = pos2->next) {
+						Position last = ListLast(new);
+						Position pos = (Position)malloc(sizeof(struct node));
+						pos->item.exponent = pos1->item.exponent + pos2->item.exponent;
+						pos->item.coefficient =
+								pos1->item.coefficient * pos2->item.coefficient;
+						__list_add(last, pos);
+				}
 
-	PolyMerge(new);
+		PolyMerge(new);
 
-	return new;
+		return new;
 }
 
 /**
@@ -308,11 +308,11 @@ List PolyMul(List list1, List list2, List new)
  */
 void PolyMerge(List list)
 {
-	for (Position i = list->next; !__pos_is_last(i); i = i->next)
-		for (Position j = i->next; j != NULL; j = j->next)
-			if (i->item.exponent == j->item.exponent) {
-				i->item.coefficient += j->item.coefficient;
-				Position prev = ListFindPrev(list, &j->item);
-				__list_del(j, prev);
-			}
+		for (Position i = list->next; !__pos_is_last(i); i = i->next)
+				for (Position j = i->next; j != NULL; j = j->next)
+						if (i->item.exponent == j->item.exponent) {
+								i->item.coefficient += j->item.coefficient;
+								Position prev = ListFindPrev(list, &j->item);
+								__list_del(j, prev);
+						}
 }
