@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "singly_linked_list.h"
+#include "list/singly_linked_list.h"
 
 struct node {
     ElementType ele;
