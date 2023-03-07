@@ -1,29 +1,24 @@
 /**
  * @file singly_linked_list.h
- * @date 2022-03-11
- * @author James Wang (pineapple_cpp@163.com)
- * 
- * @brief 单链表
+ * @date 2023-03-07
+ * @author James Wang
+ * @email james_wangx@163.com
+ * @brief 单链表声明
  */
+#ifndef DSA_SINGLY_LINKED_LIST_H
+#define DSA_SINGLY_LINKED_LIST_H
 
-#ifndef _DSAA_SINGLY_LINKED_LIST_H
-#define _DSAA_SINGLY_LINKED_LIST_H
+#include <stdbool.h>
 
-struct Node;
 typedef int ElementType;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
+typedef struct node Node;
+typedef struct node *List;
+typedef struct node *Pos;
 
-List MakeEmpty(List L);
-int IsEmpty(List L);
-int IsLast(Position P, List L);
-Position Find(ElementType X, List L);
-void Delete(ElementType X, List L);
-Position FindPrevious(ElementType X, List L);
-void Insert(ElementType X, List L, Position P);
-void DeleteList(List L);
-Position Header(List L);
-Position First(List L);
+List list_init(void);
+bool list_is_empty(List list);
+int list_add(List list, ElementType ele);
+int list_del(List list, ElementType ele);
+int list_size(List list);
 
-#endif // _DSAA_SINGLY_LINKED_LIST_H
+#endif // DSA_SINGLY_LINKED_LIST_H
