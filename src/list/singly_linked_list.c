@@ -10,11 +10,6 @@
 
 #include "list/singly_linked_list.h"
 
-struct node {
-    ElementType ele;
-    List next;
-};
-
 
 List list_init(void) {
     List list = (List) malloc(sizeof(Node));
@@ -42,15 +37,15 @@ int list_add(List list, ElementType ele) {
 }
 
 
-static Pos __list_search(List list, ElementType ele) {
+static Pos __list_search_prev(List list, ElementType ele) {
     if (list_is_empty(list)) {
         fprintf(stderr, "链表为空！");
         return NULL;
     }
 
-    Pos pos = list->next;
-    while (pos != NULL) {
-        if (pos->ele == ele)
+    Pos pos = list;
+    while (pos->next != NULL) {
+        if (pos->next->ele == ele)
             return pos;
         pos = pos->next;
     }
@@ -61,10 +56,14 @@ static Pos __list_search(List list, ElementType ele) {
 
 
 int list_del(List list, ElementType ele) {
-    Pos pos = __list_search(list, ele);
+    Pos prev = __list_search_prev(list, ele);
 
-    if (pos != NULL)
+    if (prev != NULL) {
+        Pos curr = prev->next;
+        prev->next = curr->next;
+        free(curr);
         return 0;
+    }
 
     return -1;
 }
@@ -80,4 +79,20 @@ int list_size(List list) {
     }
 
     return size;
+}
+
+
+int list_clear(List list) {
+    if (list_is_empty(list)) {
+        return -1;
+    }
+
+    Pos pos = list->next;
+    while (pos != NULL) {
+        Pos next = pos->next;
+        free(pos);
+        pos = next;
+    }
+
+    return 0;
 }

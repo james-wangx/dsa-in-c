@@ -12,7 +12,18 @@
 
 int main(void) {
     List list = list_init();
-    free(list);
+    Pos pos;
+
+    list_add(list, 10);
+    list_add(list, 20);
+    list_add(list, 30);
+    list_add(list, 40);
+
+    list_del(list, 20);
+
+    list_for_each(list, pos) {
+        printf("%d ", pos->ele);
+    }
 
     return 0;
 }

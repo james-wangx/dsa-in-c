@@ -15,10 +15,19 @@ typedef struct node Node;
 typedef struct node *List;
 typedef struct node *Pos;
 
+struct node {
+    ElementType ele;
+    Pos next;
+};
+
 List list_init(void);
 bool list_is_empty(List list);
 int list_add(List list, ElementType ele);
 int list_del(List list, ElementType ele);
 int list_size(List list);
+int list_clear(List list);
+
+#define list_for_each(list, pos) \
+    for((pos) = (list)->next; (pos) != NULL; (pos) = (pos)->next)
 
 #endif // DSA_SINGLY_LINKED_LIST_H
