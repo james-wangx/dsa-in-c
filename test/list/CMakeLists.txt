@@ -2,4 +2,4 @@ add_executable(test_singly_linked_list test_singly_linked_list.c)
 
 target_link_libraries(test_singly_linked_list sll)
 
-add_test(test_singly_linked_list test_singly_linked_list)
+add_test(test_singly_linked_list ${EXECUTABLE_OUTPUT_PATH}/test_singly_linked_list)
