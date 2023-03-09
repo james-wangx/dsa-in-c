@@ -6,7 +6,6 @@
  * @brief 测试单链表
  */
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "list/singly_linked_list.h"
 
@@ -24,6 +23,8 @@ int main(void) {
     list_for_each(list, pos) {
         printf("%d ", pos->ele);
     }
+
+    list_clear(list);
 
     return 0;
 }
