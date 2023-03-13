@@ -6,6 +6,7 @@
  * @brief 测试单链表
  */
 #include <stdio.h>
+#include <assert.h>
 
 #include "list/singly_linked_list.h"
 
@@ -23,6 +24,8 @@ int main(void) {
     list_for_each(list, pos) {
         printf("%d ", pos->ele);
     }
+
+    assert(list_size(list) == 3);
 
     list_clear(list);
 

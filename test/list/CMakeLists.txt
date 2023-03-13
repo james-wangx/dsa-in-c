@@ -1,5 +1,8 @@
 add_executable(test_singly_linked_list test_singly_linked_list.c)
+add_executable(test_array_list test_array_list.c)
 
 target_link_libraries(test_singly_linked_list sll)
+target_link_libraries(test_array_list array_list)
 
 add_test(test_singly_linked_list ${EXECUTABLE_OUTPUT_PATH}/test_singly_linked_list)
+add_test(test_array_list ${EXECUTABLE_OUTPUT_PATH}/test_array_list)
