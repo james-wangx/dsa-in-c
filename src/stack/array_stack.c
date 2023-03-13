@@ -33,7 +33,7 @@ inline int stack_is_full(Stack stack) {
 
 int stack_push(Stack stack, ElementType ele) {
     if (stack_is_full(stack)) {
-        fprintf(stderr, "Stack is full!");
+        fprintf(stderr, "Stack is full!\n");
         return -1;
     }
 
@@ -45,7 +45,7 @@ int stack_push(Stack stack, ElementType ele) {
 
 ElementType stack_pop(Stack stack) {
     if (stack_is_empty(stack)) {
-        fprintf(stderr, "Stack is empty");
+        fprintf(stderr, "Stack is empty\n");
         return -1;
     }
 
@@ -55,7 +55,7 @@ ElementType stack_pop(Stack stack) {
 
 ElementType stack_peek(Stack stack) {
     if (stack_is_empty(stack)) {
-        fprintf(stderr, "Stack is empty");
+        fprintf(stderr, "Stack is empty\n");
         return -1;
     }
 

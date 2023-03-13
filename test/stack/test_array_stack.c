@@ -33,7 +33,7 @@ void test_stack_push(void) {
 
 
 void test_stack_pop(void) {
-    for (int i = 10; i >= 1; ++i)
+    for (int i = 10; i >= 1; --i)
         assert(stack_pop(stack) == i * 10);
     assert(stack_pop(stack) == -1);
     assert(stack_size(stack) == 0);
