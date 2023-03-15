@@ -11,9 +11,10 @@
 
 void test_calc(void) {
     assert(calc("3+2*6-2") == 13);
-    // assert(calc("30+2*6-2") == 40);
+    assert(calc("30+2*6-2") == 40);
     assert(calc("7*2*2-5+1-5+3-4") == 18);
-    // assert(calc("3-2*5+4") == -11);
+    assert(calc("3-2*5+4") == -3);
+    assert(calc("(30+2)*6-20/2+7") == 189);
 }
 
 int main(void) {
