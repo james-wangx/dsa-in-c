@@ -1,8 +1,11 @@
 add_executable(test_array_stack test_array_stack.c)
-add_executable(test_list_stack test_list_stack.c)
-
 target_link_libraries(test_array_stack array_stack)
-target_link_libraries(test_list_stack list_stack)
-
 add_test(test_array_stack ${EXECUTABLE_OUTPUT_PATH}/test_array_stack)
+
+add_executable(test_list_stack test_list_stack.c)
+target_link_libraries(test_list_stack list_stack)
 add_test(test_list_stack ${EXECUTABLE_OUTPUT_PATH}/test_list_stack)
+
+add_executable(test_infix_exp_calc test_infix_exp_calc.c)
+target_link_libraries(test_infix_exp_calc list_stack infix_exp_calc)
+add_test(test_infix_exp_calc ${EXECUTABLE_OUTPUT_PATH}/test_infix_exp_calc)
