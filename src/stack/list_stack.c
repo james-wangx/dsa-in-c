@@ -25,7 +25,7 @@ inline int stack_is_empty(Stack stack) {
 }
 
 
-int stack_is_full(Stack stack) {
+inline int stack_is_full(Stack stack) {
     return stack_size(stack) == stack->max_size;
 }
 
