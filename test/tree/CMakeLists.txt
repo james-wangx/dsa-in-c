@@ -1,0 +1,3 @@
+add_executable(test_binary_tree test_binary_tree.c)
+target_link_libraries(test_binary_tree binary_tree)
+add_test(test_binary_tree ${EXECUTABLE_OUTPUT_PATH}/test_binary_tree)
